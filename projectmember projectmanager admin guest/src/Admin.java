@@ -12,6 +12,7 @@ public class Admin extends ProjectManager {
         system.projects.add(new Project(id,key,name,type,lead,members,boards,backlog));
 
     }
+    // it would be better if issues were added into an issuelist
     public Issue createIssue(int id, String title, String description, Comment comments,
                             Date createTime, Date updateTime,Date dueDate, 
                             Enum priority, Enum status, Enum type,Issue childIssue,
@@ -24,6 +25,8 @@ public class Admin extends ProjectManager {
     }
     public void createUser(String usertype,int id,String username, String fullname, int contact, String teams){
         // User is abstract class cannot insantiate abstract class
+        // Users should be added into userlist which will be included in System
+ 
         switch (usertype) {
             case "boardmember":
                 system.users.add(new BoardMember(id,username,fullname,contact,teams));
@@ -40,6 +43,5 @@ public class Admin extends ProjectManager {
             default:
                 break;
         }
-
     }
 }
