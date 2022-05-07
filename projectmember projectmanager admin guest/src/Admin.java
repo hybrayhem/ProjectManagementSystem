@@ -41,7 +41,7 @@ public class Admin extends ProjectManager {
                 system.users.add(new Guest(id,username,fullname,contact,teams));
                 break;
             default:
-                break;
+                System.out.println("User couldn't be added");
         }
     }
 }
