@@ -13,15 +13,14 @@ public class Admin extends ProjectManager {
 
     }
     // it would be better if issues were added into an issuelist
-    public Issue createIssue(int id, String title, String description, Comment comments,
+    public void createIssue(IssueList issueList,int id, String title, String description, Comment comments,
                             Date createTime, Date updateTime,Date dueDate, 
                             Enum priority, Enum status, Enum type,Issue childIssue,
                             List<User> assignee, List<String> logHistory )
     {
         Issue issue = new Issue(id,title,description,comments,createTime,updateTime,
                                 dueDate,priority,status,type,childIssue,assignee,logHistory);
-        return issue;
-
+        issueList.add(issue);
     }
     public void createUser(String usertype,int id,String username, String fullname, int contact, String teams){
         // User is abstract class cannot insantiate abstract class
