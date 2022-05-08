@@ -26,21 +26,21 @@ public abstract class User {
     }
 
     // Methods
-    public abstract void viewBoard();
+    public abstract void viewBoard(Board board);
     
-    public abstract status changeIssueStatus(Issue issue, Status status) {
-
+    public final abstract void changeIssueStatus(Issue issue, Status status) {
+        issue.setStatus(status);
     }
 
-    public abstract void editIssueTitle(Issue issue, String title) {
-
+    public final abstract void editIssueTitle(Issue issue, String title) {
+        issue.setTitle(title);
     }
 
-    public abstract void removeIssueComment(Issue issue) {
-
+    public final abstract void removeIssueComment(Issue issue, Comment com) {
+        issue.removeComment(com);
     }
 
-    public abstract void addIssueComment(Issue issue, Comment comment) {
-
+    public final abstract void addIssueComment(Issue issue, Comment com) {
+        issue.addComment(
     }
 }
