@@ -5,7 +5,7 @@ public class Project {
     private String type;
     private ProjectManager projectManager;
     private BinarySearchTree<ProjectMember> projectMembers;
-    private MyArrayList<Board> board;
+    private List<Board> board;
     private Backlog backlog;
 
     public int getId() {
@@ -73,11 +73,11 @@ public class Project {
         return this.board.add(board);
     }
 
-    public MyArrayList<Board> getBoards() {
+    public List<Board> getBoards() {
         return board;
     }
 
-    public void setBoards(MyArrayList<Board> board) {
+    public void setBoards(List<Board> board) {
         this.board = board;
     }
 

@@ -3,14 +3,14 @@ import java.util.Scanner;
 public class SystemClass {
 
     private Admin admin;
-    private MyArrayList<Project> project;
+    private List<Project> project;
 
     public SystemClass(Admin admin) {
         this.admin = admin;
-        this.project = new MyArrayList<>();
+        this.project = new List<>();
     }
     public SystemClass(){
-        this.project = new MyArrayList<>();
+        this.project = new List<>();
     }
 
     public boolean login(Member member) {
@@ -61,11 +61,11 @@ public class SystemClass {
     public boolean deleteProject(Project key){
         return this.project.delete(key);
     }
-    public MyArrayList<Project> getProjects() {
+    public List<Project> getProjects() {
         return this.project;
     }
 
-    public void setProjects(MyArrayList<Project> project) {
+    public void setProjects(List<Project> project) {
         this.project = project;
     }
 }
