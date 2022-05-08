@@ -28,11 +28,11 @@ public abstract class User {
     // Methods
     public abstract void viewBoard();
     
-    public abstract status changeIssueStatus(Issue issue, Status newStatus) {
+    public abstract status changeIssueStatus(Issue issue, Status status) {
 
     }
 
-    public abstract void editIssueTitle(Issue issue, String newTitle) {
+    public abstract void editIssueTitle(Issue issue, String title) {
 
     }
 
@@ -40,7 +40,7 @@ public abstract class User {
 
     }
 
-    public abstract void addIssueComment(Issue issue, Comment newComment) {
+    public abstract void addIssueComment(Issue issue, Comment comment) {
 
     }
 }
