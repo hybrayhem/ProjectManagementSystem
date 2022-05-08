@@ -20,7 +20,8 @@ public abstract class User {
         this.contact = contact;
         this.teams = teams;
     }
-
+    
+    // Incomplete
     public User(User guest) {
 
     }
