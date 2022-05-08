@@ -41,6 +41,6 @@ public abstract class User {
     }
 
     public final abstract void addIssueComment(Issue issue, Comment com) {
-        issue.addComment(
+        issue.addComment(com);
     }
 }
