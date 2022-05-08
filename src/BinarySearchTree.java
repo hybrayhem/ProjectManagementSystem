@@ -161,7 +161,6 @@ public class BinarySearchTree < E
     }
   }
 
-  /**** BEGIN EXERCISE ****/
   /** Removes target from tree.
        @param target Item to be removed
        @return true if the object was in the tree, false otherwise
@@ -180,8 +179,6 @@ public class BinarySearchTree < E
   public boolean contains(E target) {
     return find(target) != null;
   }
-
-  /**** END EXERCISE ****/
 
   /** Find the node that is the
       inorder predecessor and replace it
