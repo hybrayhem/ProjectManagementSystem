@@ -1,3 +1,5 @@
+import BST.BinarySearchTree;
+
 public class Project {
     private int id;
     private String key;
