@@ -26,7 +26,7 @@ public abstract class User {
     }
 
     // Methods
-    public abstract void viewBoard(Board board);
+    public abstract void viewBoard();
     
     public abstract status changeIssueStatus(Issue issue, Status newStatus) {
 
