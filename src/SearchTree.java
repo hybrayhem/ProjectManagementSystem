@@ -1,5 +1,3 @@
-package BTS;
-
 // Interface to define a search tree
 
 public interface SearchTree < E

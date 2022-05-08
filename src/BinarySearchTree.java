@@ -1,7 +1,3 @@
-package BTS;
-
-import java.io.*;
-
 // A class to represent a binary search tree.
 
 

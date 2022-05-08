@@ -1,5 +1,3 @@
-package BTS;
-
 import java.io.*;
 
 // Class for a binary tree that stores type E objects.

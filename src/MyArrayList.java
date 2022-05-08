@@ -1,5 +1,3 @@
-package BTS;
-
 import java.awt.*;
 
 public class MyArrayList<T> {
@@ -61,15 +59,19 @@ public class MyArrayList<T> {
         return true;
     }
 
-    public  void delete (T value) {
-        int index = 0;
+    public boolean delete (T value) {
+        int index = -1;
         for(int i=0; i<size; i++) {
             if (value == array[i])
                 index = i;
         }
+        if (index == -1) return false;
+
         for ( int i = index; i!= size; i++)
             array[i]=array[i+1];
         --size;
+
+        return true;
     }
 
 
