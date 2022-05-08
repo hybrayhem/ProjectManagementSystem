@@ -1,17 +1,12 @@
-import BTS.BinarySearchTree;
-
-import java.util.List;
-
 public class Project {
     private int id;
     private String key;
     private String name;
     private String type;
     private ProjectManager projectManager;
-    private BinarySearchTree<ProjectMember> projectMember;
+    private BinarySearchTree<ProjectMember> projectMembers;
     private MyArrayList<Board> board;
     private Backlog backlog;
-
 
     public int getId() {
         return id;
@@ -53,19 +48,36 @@ public class Project {
         this.projectManager = projectManager;
     }
 
-    public BinarySearchTree<ProjectMember> getProjectMember() {
+    public ProjectMember getProjectMember(String username){
+        return this.projectMembers.find();// To: do
+    }
+    public void setProjectMember(ProjectMember projectMember){
+        this.projectMembers.add(projectMember);
+    }
+
+    public BinarySearchTree<ProjectMember> getProjectMembers() {
         return projectMember;
     }
 
-    public void setProjectMember(BinarySearchTree<ProjectMember> projectMember) {
+    public void setProjectMembers(BinarySearchTree<ProjectMember> projectMember) {
         this.projectMember = projectMember;
+    }
+
+    public void editBoard(){
+        // To : do
+    }
+    public Board getBoard(int id){
+        return this.board.search(id);
+    }
+    public boolean setBoard(Board board){
+        return this.board.add(board);
     }
 
     public MyArrayList<Board> getBoards() {
         return board;
     }
 
-    public void setBoard(MyArrayList<Board> board) {
+    public void setBoards(MyArrayList<Board> board) {
         this.board = board;
     }
 
@@ -76,4 +88,5 @@ public class Project {
     public void setBacklog(Backlog backlog) {
         this.backlog = backlog;
     }
+
 }
