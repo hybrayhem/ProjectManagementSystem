@@ -1,7 +1,48 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 
 /** Implements the quicksort algorithm. */
 public class QuickSort {
+    /**
+     * Sorts the given issues by due date
+     * @param issueList list of issues to be sorted
+     * @return returns the arraylist of sorted issues
+     */
+    public static ArrayList<Issue> sortByDueDate(IssueList issuelist){
+        if(issuelist == null){
+            return null;
+        }
+        Issue[] issuesArr = new Issue[issuelist.getIssueList().size()];
+        for(int i = 0; i < issuelist.getIssueList().size();i++){
+            issuesArr[i] = issuelist.getIssueList().get(i);
+        }
+        QuickSort.sort(issuesArr,new SortByDueDate());
+        ArrayList<Issue> arrListIssues = new ArrayList<>();
+        for(int i = 0; i < issuelist.getIssueList().size();i++){
+            arrListIssues.add(issuesArr[i]);
+        }
+        return arrListIssues;      
+    }
+    /**
+     * sort the given issues by create date
+     * @param issueList list of issues to be sorted
+     * @return returns the arraylist of sorted issues
+     */
+    public static ArrayList<Issue> sortByCreateDate(IssueList issuelist){
+        if(issuelist == null){
+            return null;
+        }
+        Issue[] issuesArr = new Issue[issuelist.getIssueList().size()];
+        for(int i = 0; i < issuelist.getIssueList().size();i++){
+            issuesArr[i] = issuelist.getIssueList().get(i);
+        }
+        QuickSort.sort(issuesArr,new SortByCreateDate());
+        ArrayList<Issue> arrListIssues = new ArrayList<>();
+        for(int i = 0; i < issuelist.getIssueList().size();i++){
+            arrListIssues.add(issuesArr[i]);
+        }
+        return arrListIssues;  
+    }
     /** Sort the table using the quicksort algorithm.
     @pre table contains Comparable objects.
     @post table is sorted.
@@ -21,7 +62,7 @@ public class QuickSort {
     private static void quickSort(Issue[] table, int first, int last,Comparator<Issue> comp) {
         if (first < last) { // There is data to be sorted.
             // Partition the table.
-            int pivIndex = partition(table, first, last);
+            int pivIndex = partition(table, first, last,comp);
             // Sort the left half.
             quickSort(table, first, pivIndex - 1,comp);
             // Sort the right half.
