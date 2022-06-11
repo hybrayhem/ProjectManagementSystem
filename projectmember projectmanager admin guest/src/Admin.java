@@ -1,9 +1,9 @@
 import java.util.List;
 
 public class Admin extends ProjectManager {
-    private System system;
+    private SystemClass system;
     public Admin(int id, String username,String fullname, int contact,String teams, 
-                 Project project, List<Board> assignedBoards, System system){
+                 Project project, List<Board> assignedBoards, SystemClass system){
         super(id, username, fullname, contact, teams, project, assignedBoards);
         this.system = system;
     }
