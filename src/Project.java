@@ -1,5 +1,7 @@
 import BST.BinarySearchTree;
 
+import java.util.List;
+
 public class Project {
     private int id;
     private String key;
@@ -9,6 +11,14 @@ public class Project {
     private BinarySearchTree<ProjectMember> projectMembers;
     private List<Board> board;
     private Backlog backlog;
+
+    public Project(int id, String key, String name, String type, ProjectManager lead, BinarySearchTree<ProjectMember> members, List<Board> boards, Backlog backlog) {
+        this.id = id;
+        this.key = key;
+        this.name = name;
+        this.type = type;
+        this.projectManager = lead;
+    }
 
     public int getId() {
         return id;
@@ -50,26 +60,22 @@ public class Project {
         this.projectManager = projectManager;
     }
 
-    public ProjectMember getProjectMember(String username){
-        return this.projectMembers.find();// To: do
-    }
+//    public ProjectMember getProjectMember(String username){
+//        return this.projectMembers.find();// To: do
+//    }
     public void setProjectMember(ProjectMember projectMember){
         this.projectMembers.add(projectMember);
     }
 
     public BinarySearchTree<ProjectMember> getProjectMembers() {
-        return projectMember;
-    }
-
-    public void setProjectMembers(BinarySearchTree<ProjectMember> projectMember) {
-        this.projectMember = projectMember;
+        return projectMembers;
     }
 
     public void editBoard(){
         // To : do
     }
     public Board getBoard(int id){
-        return this.board.search(id);
+        return this.board.get(id);
     }
     public boolean setBoard(Board board){
         return this.board.add(board);
