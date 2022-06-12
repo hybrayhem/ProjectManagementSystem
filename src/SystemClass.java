@@ -1,33 +1,55 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class SystemClass {
-
+    private static final String filePath = "./files/login.txt";
     private Admin admin;
-    private List<Project> project;
+    public List<Project> projects;
 
     public SystemClass(Admin admin) {
         this.admin = admin;
-        this.project = new List<>();
+        this.projects = new ArrayList<>();
     }
     public SystemClass(){
-        this.project = new List<>();
+        this.projects = new ArrayList<>();
     }
 
-    public boolean login(Member member) {
+    public boolean login() throws FileNotFoundException {
 
         Scanner scanner = new Scanner(System.in);
-        String username;
-        String password;
+        String username_input, username_real="";
+        String password_input, password_real="";
         int remainTrying = 3;
+
+        File myObj = new File(filePath);
+        Scanner myReader = new Scanner(myObj);
 
         while(true){
 
             System.out.print("Username : ");
-            username = scanner.nextLine();
+            username_input = scanner.nextLine();
+            scanner.nextInt();
             System.out.print("Password : ");
-            password = scanner.nextLine();
+            password_input = scanner.nextLine();
 
-            if (member.getUsername().equals(username) && member.getPassword().equals(password)) {
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                Scanner sc=new Scanner(data);
+                username_real = sc.next();
+                password_real = sc.next();
+
+                if (username_input.equals(username_real)){
+                    break;
+                }
+                sc.close();
+            }
+            myReader.close();
+
+            if (username_real.equals(username_input) && password_real.equals(password_input)) {
                 System.out.println("Login Sucesfully...");
                 return true;
             } else {
@@ -35,16 +57,12 @@ public class SystemClass {
                 System.out.println("Wrong username or password..");
                 if (remainTrying == 0) {
                     System.out.println("You are not allowed to enter...");
-                    return false;
                     break;
                 }
                 System.out.println("You have " + remainTrying + " entrie(s) left. Try again..");
             }
         }
-    }
-
-    public static void profilMenu(){
-        // To do
+        return false;
     }
 
     public Admin getAdmin() {
@@ -56,16 +74,16 @@ public class SystemClass {
     }
 
     public boolean addProject(Project project){
-        return this.project.add(project);
+        return this.projects.add(project);
     }
     public boolean deleteProject(Project key){
-        return this.project.delete(key);
+        return this.projects.remove(key);
     }
     public List<Project> getProjects() {
-        return this.project;
+        return this.projects;
     }
 
     public void setProjects(List<Project> project) {
-        this.project = project;
+        this.projects = project;
     }
 }
