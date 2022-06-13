@@ -1,5 +1,5 @@
 /** User of the System. */
-public abstract class User implements Comparable<User> {
+public abstract class User implements Comparable<User>{
     // Data Fields
     /**  */
     private int id;
@@ -19,6 +19,17 @@ public abstract class User implements Comparable<User> {
         this.fullname = fullname;
         this.contact = contact;
         this.teams = teams;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        User o0 = this;
+        if(o0.fullname.compareToIgnoreCase(o.fullname) > 0)
+            return 1;
+        else if(o0.fullname.compareToIgnoreCase(o.fullname) < 0)
+            return -1;
+        else
+            return 0;
     }
 
     public User(User guest) {
@@ -43,7 +54,4 @@ public abstract class User implements Comparable<User> {
     public abstract void addIssueComment(Issue issue, Comment comment) {
 
     }
-
-    // Methods
-    public abstract void viewBoard(Board board);
 }
