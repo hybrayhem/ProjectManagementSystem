@@ -6,10 +6,23 @@ public class ProjectMember extends BoardMember{
         this.project = project;
     }
     public void viewBacklog(){
-        System.out.println(project.backlog.toString());
-
+        if(project.backlog == null){
+            System.out.println("There is no backlog to view.");
+        }
+        else{
+            System.out.println(project.backlog.toString());
+        }
     }
     public void viewProject(){
-        System.out.println(project.toString());
+        if(project == null){
+            System.out.println("There is no project to view");
+            return;
+        }
+        System.out.println("Project name: "+project.getName());
+        System.out.println("Project id: "+project.getId());
+        System.out.println("Project key: "+project.getKey());
+        System.out.println("Project type: "+project.getType());
+        System.out.println("Project Manager of the project: "+project.getProjectManager());
+        System.out.println("Project members: "+project.getProjectMembers().toString());
     }
 }
