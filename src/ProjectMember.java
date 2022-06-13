@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class ProjectMember extends BoardMember implements Comparable<User> {
+public class ProjectMember extends BoardMember {
     protected Project project;
     public ProjectMember(int id, String username,String fullname, int contact, String teams,
                          Project project, List<Board> assignedBoards){

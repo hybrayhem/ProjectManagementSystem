@@ -8,24 +8,23 @@ public class Guest extends User{
             System.out.println(invitedBoard.toString());
         }
     }
-
-    @Override
-    public void viewBoard(Board board) {
+    public Guest(){
+        System.out.println("You are noob");
     }
-
-    public void changeIssueStatus(){
+    public Issue.Status changeIssueStatus(Issue i, Issue.Status s){
         System.out.println("You don't have permission to change issue status!");
+        return null;
     }
-    public void editIssueTitle(){
+    public void editIssueTitle(Issue i, String s){
         System.out.println("You don't have permission to edit issue title!");
     }
     public void editIssueComment(){
         System.out.println("You don't have permission to edit issue comment!");
     }
-    public void removeIssueComment(){
+    public void removeIssueComment(Issue i){
         System.out.println("You don't have permission to remove issue comment!");
     }
-    public void addIssueComment(){
+    public void addIssueComment(Issue i, Comment c){
         System.out.println("You don't have permission to add issue comment!");
     }
 }
