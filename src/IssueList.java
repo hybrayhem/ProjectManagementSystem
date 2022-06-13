@@ -10,6 +10,23 @@ public class IssueList {
         this.title = title;
     }
 
+
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
+    }
+
+    public PriorityQueue<Issue> getIssueQueue() {
+        return issueQueue;
+    }
+
+    public void setIssueQueue(PriorityQueue<Issue> issueQueue) {
+        this.issueQueue = issueQueue;
+    }
+
     public void addIssue(Issue i){
         issues.add(i);
         issueQueue.add(i);

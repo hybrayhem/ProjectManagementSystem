@@ -9,12 +9,20 @@ public class SystemClass {
     private Admin admin;
     public List<Project> projects;
 
+    private final ArrayList<User> users;
+
+    public void addUser(User user){
+        this.users.add(user);
+    }
+
     public SystemClass(Admin admin) {
         this.admin = admin;
         this.projects = new ArrayList<>();
+         users = new ArrayList<>();
     }
     public SystemClass(){
         this.projects = new ArrayList<>();
+        users = new ArrayList<>();
     }
 
     public boolean login() throws FileNotFoundException {

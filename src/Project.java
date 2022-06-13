@@ -8,11 +8,11 @@ public class Project {
     private String name;
     private String type;
     private ProjectManager projectManager;
-    private BinarySearchTree<ProjectMember> projectMembers;
+    private BinarySearchTree<User> users;
     private List<Board> board;
     private Backlog backlog;
 
-    public Project(int id, String key, String name, String type, ProjectManager lead, BinarySearchTree<ProjectMember> members, List<Board> boards, Backlog backlog) {
+    public Project(int id, String key, String name, String type, ProjectManager lead, BinarySearchTree<User> members, List<Board> boards, Backlog backlog) {
         this.id = id;
         this.key = key;
         this.name = name;
@@ -64,11 +64,11 @@ public class Project {
 //        return this.projectMembers.find();// To: do
 //    }
     public void setProjectMember(ProjectMember projectMember){
-        this.projectMembers.add(projectMember);
+        this.users.add(projectMember);
     }
 
-    public BinarySearchTree<ProjectMember> getProjectMembers() {
-        return projectMembers;
+    public BinarySearchTree<User> getProjectMembers() {
+        return users;
     }
 
     public void editBoard(){

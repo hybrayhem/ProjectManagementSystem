@@ -1,4 +1,6 @@
-public class ProjectMember extends BoardMember{
+import java.util.List;
+
+public class ProjectMember extends BoardMember implements Comparable<ProjectMember> {
     protected Project project;
     public ProjectMember(int id, String username,String fullname, int contact, String teams,
                          Project project, List<Board> assignedBoards){
@@ -6,11 +8,11 @@ public class ProjectMember extends BoardMember{
         this.project = project;
     }
     public void viewBacklog(){
-        if(project.backlog == null){
+        if(project.getBacklog() == null){
             System.out.println("There is no backlog to view.");
         }
         else{
-            System.out.println(project.backlog.toString());
+            System.out.println(project.getBacklog().toString());
         }
     }
     public void viewProject(){

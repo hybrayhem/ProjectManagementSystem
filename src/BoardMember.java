@@ -11,6 +11,9 @@ public class BoardMember extends User {
         super(id, username, fullname, contact, teams);
         this.assignedBoards = assignedBoards;
     }
+    public BoardMember(int id, String username, String fullname, int contact, String teams) {
+        super(id, username, fullname, contact, teams);
+    }
 
     // Methods
     @Override

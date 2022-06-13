@@ -5,40 +5,38 @@ import java.util.Comparator;
 public class QuickSort {
     /**
      * Sorts the given issues by due date
-     * @param issueList list of issues to be sorted
      * @return returns the arraylist of sorted issues
      */
     public static ArrayList<Issue> sortByDueDate(IssueList issuelist){
         if(issuelist == null){
             return null;
         }
-        Issue[] issuesArr = new Issue[issuelist.getIssueList().size()];
-        for(int i = 0; i < issuelist.getIssueList().size();i++){
-            issuesArr[i] = issuelist.getIssueList().get(i);
+        Issue[] issuesArr = new Issue[issuelist.getIssues().size()];
+        for(int i = 0; i < issuelist.getIssues().size();i++){
+            issuesArr[i] = issuelist.getIssues().get(i);
         }
         QuickSort.sort(issuesArr,new SortByDueDate());
         ArrayList<Issue> arrListIssues = new ArrayList<>();
-        for(int i = 0; i < issuelist.getIssueList().size();i++){
+        for(int i = 0; i < issuelist.getIssues().size();i++){
             arrListIssues.add(issuesArr[i]);
         }
         return arrListIssues;      
     }
     /**
      * sort the given issues by create date
-     * @param issueList list of issues to be sorted
      * @return returns the arraylist of sorted issues
      */
     public static ArrayList<Issue> sortByCreateDate(IssueList issuelist){
         if(issuelist == null){
             return null;
         }
-        Issue[] issuesArr = new Issue[issuelist.getIssueList().size()];
-        for(int i = 0; i < issuelist.getIssueList().size();i++){
-            issuesArr[i] = issuelist.getIssueList().get(i);
+        Issue[] issuesArr = new Issue[issuelist.getIssues().size()];
+        for(int i = 0; i < issuelist.getIssues().size();i++){
+            issuesArr[i] = issuelist.getIssues().get(i);
         }
-        QuickSort.sort(issuesArr,new SortByCreateDate());
+        QuickSort.sort(issuesArr,new SortByCreateTime());
         ArrayList<Issue> arrListIssues = new ArrayList<>();
-        for(int i = 0; i < issuelist.getIssueList().size();i++){
+        for(int i = 0; i < issuelist.getIssues().size();i++){
             arrListIssues.add(issuesArr[i]);
         }
         return arrListIssues;  

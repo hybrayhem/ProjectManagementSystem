@@ -1,5 +1,5 @@
 /** User of the System. */
-public abstract class User {
+public abstract class User implements Comparable<User> {
     // Data Fields
     /**  */
     private int id;
@@ -43,4 +43,7 @@ public abstract class User {
     public abstract void addIssueComment(Issue issue, Comment comment) {
 
     }
+
+    // Methods
+    public abstract void viewBoard(Board board);
 }
