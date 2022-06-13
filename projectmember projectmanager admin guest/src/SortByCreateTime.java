@@ -4,5 +4,4 @@ public class SortByCreateTime implements Comparator<Issue> {
     {
         return a.getCreateTime().compareTo(b.getCreateTime());;
     }
-    
 }
