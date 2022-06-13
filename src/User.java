@@ -40,7 +40,7 @@ public abstract class User implements Comparable<User>{
     }
 
     // Methods
-    public abstract void viewBoard();
+    public abstract void viewBoard(Board board);
     
     public abstract Issue.Status changeIssueStatus(Issue issue, Issue.Status status);
     public abstract void editIssueTitle(Issue issue, String title) ;

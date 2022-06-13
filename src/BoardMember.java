@@ -1,7 +1,7 @@
 import java.util.List;
 
 /** Users who are assigned to a specific board. */
-public class BoardMember extends User implements Comparable<User> {
+public abstract class BoardMember extends User implements Comparable<User> {
     // Data Fields
     /** */
     private List<Board> assignedBoards;
