@@ -27,14 +27,20 @@ public class IssueList {
         this.issueQueue = issueQueue;
     }
 
-    public void addIssue(Issue i){
+    public boolean addIssue(Issue i){
+        if(i == null)
+            return false;
         issues.add(i);
         issueQueue.add(i);
+        return true;
     }
 
-    public void deleteIssue(Issue i){
+    public boolean deleteIssue(Issue i){
+        if(i == null)
+            return false;
         issues.remove(i);
         issueQueue.remove(i);
+        return true;
     }
 
     public String getTitle() {
@@ -43,5 +49,14 @@ public class IssueList {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Issue searchInIssueList(String title){
+        for(int i = 0; i < issues.size(); i++) {
+            if (title.compareTo(issues.get(i).getTitle()) == 0) {
+                return issues.get(i);
+            }
+        }
+        return null;
     }
 }

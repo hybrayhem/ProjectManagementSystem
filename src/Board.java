@@ -11,7 +11,7 @@ public class Board {
 
     public Issue searchIssue(String issueTitle) {
         for (IssueList issueList : listOfIssueList) {
-            Issue found = issueList.search(issueTitle);
+            Issue found = issueList.searchInIssueList(issueTitle);
             if (found != null)
                 return found;
         }
@@ -20,14 +20,14 @@ public class Board {
 
     public boolean addIssue(Issue issue, int index) {
         if (index < listOfIssueList.size()) {
-            return listOfIssueList.get(index).add(issue);
+            return listOfIssueList.get(index).addIssue(issue);
         }
         return false;
     }
 
     public boolean removeIssue(Issue issue, int index) {
         if (index < listOfIssueList.size()) {
-            return listOfIssueList.get(index).remove(issue);
+            return listOfIssueList.get(index).deleteIssue(issue);
         }
         return false;
     }
