@@ -33,7 +33,7 @@ public class Board {
     }
 
     public BoardMember searchMember(BoardMember target) {
-        return members.search(target);
+        return (BoardMember) members.find(target);
     }
 
     public boolean addMember(BoardMember member) {
