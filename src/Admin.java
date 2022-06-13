@@ -26,8 +26,7 @@ public class Admin extends ProjectManager {
                             Enum priority, Enum status, Enum type, Issue childIssue,
                             List<User> assignee, List<String> logHistory )
     {
-        Issue issue = new Issue(id,title,description,comments,createTime,updateTime,
-                dueDate,priority,status,type,childIssue,assignee,logHistory);
+        Issue issue = new Issue(id,title, (Issue.Status) status, (Issue.Type) type);
 
         if(issueList == null){
             System.out.println("Issue couldn't be added, try to add somewhere else.");

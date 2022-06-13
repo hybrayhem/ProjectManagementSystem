@@ -8,6 +8,11 @@ public class Guest extends User{
             System.out.println(invitedBoard.toString());
         }
     }
+
+    @Override
+    public void viewBoard(Board board) {
+    }
+
     public void changeIssueStatus(){
         System.out.println("You don't have permission to change issue status!");
     }

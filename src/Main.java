@@ -11,10 +11,15 @@ class Main {
             return;
         }
 
+        Project project = new Project();
+
         System.out.println("1- Create Project");
         System.out.println("2- Edit Project");
         System.out.println("3- Logout");
-        System.out.println("4- Create Project");
+
+
+
+
 
 
 

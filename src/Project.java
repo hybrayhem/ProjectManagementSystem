@@ -20,6 +20,9 @@ public class Project {
         this.projectManager = lead;
     }
 
+    public Project() {
+    }
+
     public int getId() {
         return id;
     }
