@@ -1,8 +1,9 @@
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class Issue {
+public class Issue implements Comparator<Issue> {
 
     enum Priority{
         Low,
@@ -34,7 +35,7 @@ public class Issue {
     private Type type;
     private Issue childIssue;
 
-    public List<User> assignee;
+    public SkipList<User> assignee = new SkipList<User>();
     public List<String> logHistory;
     private List<Comment> comments;
 
@@ -45,6 +46,23 @@ public class Issue {
         this.createTime = c.getTime();
         this.status = status;
         this.type = type;
+    }
+
+    @Override
+    public int compare(Issue o1, Issue o2) {
+        if((o1.priority == Priority.High && o2.priority == Priority.Low) || (o1.priority == Priority.High && o2.priority == Priority.Medium))
+            return 1;
+        else if(o1.priority == Priority.Medium && o2.priority == Priority.Low)
+            return 1;
+        else if((o2.priority == Priority.High && o1.priority == Priority.Low) || (o2.priority == Priority.High && o1.priority == Priority.Medium))
+            return -1;
+        else if(o2.priority == Priority.Medium && o1.priority == Priority.Low)
+            return -1;
+        else if((o2.priority == Priority.High && o1.priority == Priority.High) || (o2.priority == Priority.Medium && o1.priority == Priority.Medium)
+                || (o2.priority == Priority.Low && o1.priority == Priority.Low))
+            return 0;
+        else
+            return 0;
     }
 
     public int getId() {
@@ -87,11 +105,13 @@ public class Issue {
         return childIssue;
     }
 
-    public List<Comment> getComments(){
-        return comments;
+    public Comment getLastComment(){
+        if(comments.isEmpty())
+            return new Comment(0, null, "");
+        return comments.get(comments.size()-1);
     }
 
-    public List<User> getAssignees(){
+    public SkipList<User> getAssignees(){
         return assignee;
     }
 
@@ -128,9 +148,8 @@ public class Issue {
     }
 
     public void addComment(String line, User user){
-        int id = 0;
-        //id = generateId();
-        Comment com = new Comment(id, user, line);
+        int id = getLastComment().getId();
+        Comment com = new Comment(id+1, user, line);
         comments.add(com);
     }
 
@@ -139,10 +158,16 @@ public class Issue {
     }
 
     public void addAssignee(User user){
-        assignee.add(user);
+        assignee.insert(user);
     }
 
     public void removeAssignee(User user){
-        assignee.remove(user);
+        assignee.delete(user);
+    }
+
+    @Override
+    public String toString() {
+        String rtrn = Integer.toString(id) + "\n" + description + dueDate.toString() + priority.toString();
+        return rtrn;
     }
 }
