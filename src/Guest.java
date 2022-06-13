@@ -27,4 +27,7 @@ public class Guest extends User{
     public void addIssueComment(Issue i, Comment c){
         System.out.println("You don't have permission to add issue comment!");
     }
+    public void viewBoard(Board board) {
+        System.out.println(board.toString());
+    }
 }

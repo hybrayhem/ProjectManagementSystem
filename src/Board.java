@@ -7,7 +7,7 @@ public class Board {
     private int id;
     private static int instanceCount = 0;
     private List<IssueList> listOfIssueList;
-    private BinarySearchTree<BoardMember> members;
+    private BinarySearchTree<User> members;
 
     public Issue searchIssue(String issueTitle) {
         for (IssueList issueList : listOfIssueList) {
@@ -48,7 +48,7 @@ public class Board {
         this.id = ++instanceCount;
     }
 
-    public Board(List<IssueList> issues, BinarySearchTree<BoardMember> members) {
+    public Board(List<IssueList> issues, BinarySearchTree<User> members) {
         this();
         this.listOfIssueList = issues;
         this.members = members;
@@ -66,7 +66,7 @@ public class Board {
         return this.listOfIssueList;
     }
 
-    public BinarySearchTree<BoardMember> getMembers() {
+    public BinarySearchTree<User> getMembers() {
         return this.members;
     }
 
