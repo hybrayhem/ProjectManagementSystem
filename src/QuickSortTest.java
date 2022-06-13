@@ -47,7 +47,7 @@ public class QuickSortTest {
         Date date5 = c.getTime();
         issues.add(new Issue(i, "eray"+i, Issue.Status.development, Issue.Type.task));
         issues.get(i++).setDueDate(date5); 
-        IssueList issueList = new IssueList(issues, "title");
+        IssueList issueList = new IssueList("title");
         ArrayList<Issue> sorted = QuickSort.sortByCreateDate(issueList);
 
         System.out.println("Sorted by create time");

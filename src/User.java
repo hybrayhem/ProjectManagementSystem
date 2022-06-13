@@ -31,6 +31,9 @@ public abstract class User implements Comparable<User>{
         else
             return 0;
     }
+    User(){
+
+    }
 
     public User(User guest) {
 
@@ -39,19 +42,9 @@ public abstract class User implements Comparable<User>{
     // Methods
     public abstract void viewBoard();
     
-    public abstract status changeIssueStatus(Issue issue, Status status) {
+    public abstract Issue.Status changeIssueStatus(Issue issue, Issue.Status status);
+    public abstract void editIssueTitle(Issue issue, String title) ;
 
-    }
-
-    public abstract void editIssueTitle(Issue issue, String title) {
-
-    }
-
-    public abstract void removeIssueComment(Issue issue) {
-
-    }
-
-    public abstract void addIssueComment(Issue issue, Comment comment) {
-
-    }
+    public abstract void removeIssueComment(Issue issue);
+    public abstract void addIssueComment(Issue issue, Comment comment);
 }

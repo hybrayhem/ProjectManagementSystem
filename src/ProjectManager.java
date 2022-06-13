@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class ProjectManager extends ProjectMember {
     public ProjectManager(int id, String username,String fullname, int contact, 
                           String teams, Project project, List<Board> assignedBoards){
