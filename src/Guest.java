@@ -1,7 +1,12 @@
 public class Guest extends User{
     private Board invitedBoard;
     public void viewBoard(){
-        System.out.println(invitedBoard.toString());
+        if(invitedBoard == null){
+            System.out.println("There is no board to view!");
+        }
+        else{
+            System.out.println(invitedBoard.toString());
+        }
     }
     public void changeIssueStatus(){
         System.out.println("You don't have permission to change issue status!");

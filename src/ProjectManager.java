@@ -3,8 +3,15 @@ public class ProjectManager extends ProjectMember {
                           String teams, Project project, List<Board> assignedBoards){
         super(id, username, fullname, contact, teams, project, assignedBoards);             
     }
-    // how will users know they are assigned?
     public void assingUser(Issue issue,User user){
-        issue.addAssignee(user);
+        if(issue == null){
+            System.out.println("User cannot be assigned because the issue doesn't exist.");
+        }
+        else if(user == null){
+            System.out.println("User couldn't be added because user doesn't exist");
+        }
+        else{
+            issue.addAssignee(user);
+        }
     }   
 }
