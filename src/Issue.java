@@ -5,19 +5,19 @@ import java.util.List;
 
 public class Issue implements Comparator<Issue> {
 
-    static enum Priority{
+    enum Priority{
         Low,
         Medium,
         High
     }
-    static enum Status{
+    enum Status{
         development,
         inProgress,
         inReview,
         verified,
         done
     }
-    static enum Type{
+    enum Type{
         bug,
         task,
         story,

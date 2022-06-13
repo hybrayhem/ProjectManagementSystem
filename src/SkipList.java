@@ -2,15 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-    /**
-     *  | 4 | --------------> |___| --------------------------------------> |   |
-     *  | 3 | --------------> |___| --------------------------------------> |   |
-     *  | 2 | --------------> |___| --------------> |____|----------------> |   |
-     *  | 1 | --------------> |___| --------------> |____|----------------> |   |
-     *  | 0 | ---> | 3 | ---> | 5 | ---> | 7 | ---> | 12 | ---> | 13 | ---> |   |
-     *
-     *
-     */
+
     public class SkipList<E extends Comparable<E>> {
 
         private final int MAX_LEVEL =10;
@@ -140,7 +132,6 @@ import java.util.Random;
                             levelIndex++;
                             System.out.print( "--------------------------");
                         }
-                        // TODO: dont know why ++, it just fucking make the shit right
                         levelIndex++;
                     }
 
@@ -152,10 +143,6 @@ import java.util.Random;
             }
         }
 
-
-        /*
-         * private ========================================================================================================
-         */
 
         private boolean lessThan(E a, E b) {
             return a.compareTo(b) < 0;
