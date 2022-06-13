@@ -36,21 +36,22 @@ public class Admin extends ProjectManager {
         }
     }
     public void createUser(String usertype,int id,String username, String fullname, int contact, String teams){
-        switch (usertype) {
-            case "boardmember":
-                system.addUser(new BoardMember(id,username,fullname,contact,teams));
-                break;
+        system.addUser(new BoardMember(id,username,fullname,contact,teams));
+    }
+    public void createUser(String usertype,int id,String username, String fullname, int contact, 
+                           String teams,Project project, List<Board> assignedBoards){
+        switch(usertype){
             case "projectmember":
-                system.addUser(new ProjectMember(id,username,fullname,contact,teams));
-                break;
+               system.addUser(new ProjectMember(id,username,fullname,contact,teams,project,assignedBoards));
+               break;
             case "projectmanager":
-                system.addUser(new ProjectManager(id,username,fullname,contact,teams));
-                break;
-            case "guest":
-                system.addUser(new Guest(id,username,fullname,contact,teams));
-                break;
+               system.addUser(new ProjectManager(id,username,fullname,contact,teams,project,assignedBoards));
+               break;
             default:
-                System.out.println("User couldn't be added");
+               System.out.println("User couldn't be created!");
         }
+    }
+    public void createUser(int id,String username, String fullname, int contact, String teams){
+        system.addUser(new Guest());
     }
 }
