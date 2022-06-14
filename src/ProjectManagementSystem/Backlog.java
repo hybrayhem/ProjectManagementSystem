@@ -4,7 +4,7 @@ import java.util.Stack;
 import java.util.Objects;
 
 public class Backlog {
-    private Stack<Issue> issues;
+    private Stack<Issue> issues = new Stack<>();
 
     public Backlog() {
         // Intentionally left empty
@@ -14,10 +14,18 @@ public class Backlog {
         this.issues = issues;
     }
 
+    
+    /** 
+     * @param issue
+     */
     public void addIssue(Issue issue) {
         issues.push(issue);
     }
 
+    
+    /** 
+     * @param issue
+     */
     public void removeIssue(Issue issue) {
         issues.remove(issue);
     }
@@ -26,14 +34,27 @@ public class Backlog {
         issues.pop();
     }
 
+    
+    /** 
+     * @return Issue
+     */
     public Issue getTopIssue() {
         return issues.peek();
     }
 
+    
+    /** 
+     * @return Stack<Issue>
+     */
     public Stack<Issue> getIssues() {
         return this.issues;
     }
 
+    
+    /** 
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -45,11 +66,19 @@ public class Backlog {
         return Objects.equals(issues, backlog.issues);
     }
 
+    
+    /** 
+     * @return int
+     */
     @Override
     public int hashCode() {
         return Objects.hashCode(issues);
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString() {
         // TODO: refactor according to menu design

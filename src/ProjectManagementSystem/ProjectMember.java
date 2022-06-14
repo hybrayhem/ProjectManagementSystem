@@ -27,6 +27,7 @@ public class ProjectMember extends BoardMember {
         System.out.println("Project key: "+project.getKey());
         System.out.println("Project type: "+project.getType());
         System.out.println("Project Manager of the project: "+project.getProjectManager());
-        System.out.println("Project members: "+project.getProjectMembers().toString());
+        // binary search tree toString() should be implemented
+      //  System.out.println("Project members: "+project.getProjectMembers().toString());
     }
 }

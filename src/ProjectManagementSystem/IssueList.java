@@ -7,11 +7,16 @@ public class IssueList {
     private String title;
     private ArrayList<Issue> issues;
     private PriorityQueue<Issue> issueQueue;
+    
 
     public IssueList(String title) {
         this.title = title;
         issues = new ArrayList<>();
         issueQueue = new PriorityQueue<>();
+    }
+    public IssueList(ArrayList<Issue> newIssues,String newTitle){
+        issues = newIssues;
+        title = newTitle;
     }
 
 

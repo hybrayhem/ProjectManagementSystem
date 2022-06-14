@@ -199,7 +199,7 @@ public class Issue implements Comparable<Issue> {
 
     @Override
     public String toString() {
-        String rtrn = Integer.toString(id) + "\n" + description + dueDate.toString() + priority.toString();
+        String rtrn = Integer.toString(id) + "\n" + description + dueDate.toString() + priority.toString(); //TODO: handle nullPointerException
         return rtrn;
     }
 }

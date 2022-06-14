@@ -23,13 +23,9 @@ public class Admin extends ProjectManager {
         }
     }
 
-    public void createIssue(IssueList issueList, int id, String title, String description, Comment comments,
-                            Date createTime, Date updateTime, Date dueDate,
-                            Enum priority, Enum status, Enum type, Issue childIssue,
-                            List<User> assignee, List<String> logHistory )
+    public void createIssue(IssueList issueList, int id, String title, Enum status, Enum type )
     {
         Issue issue = new Issue(id,title, (Issue.Status) status, (Issue.Type) type);
-
         if(issueList == null){
             System.out.println("Issue couldn't be added, try to add somewhere else.");
         }
@@ -37,8 +33,8 @@ public class Admin extends ProjectManager {
             issueList.addIssue(issue);
         }
     }
-    public void createUser(String usertype,int id,String username, String fullname, int contact, String teams){
-        system.addUser(new BoardMember(id,username,fullname,contact,teams));
+    public void createUser(int id,String username, String fullname, int contact, String teams){
+        system.addUser(new BoardMember(id,username,fullname,contact,teams)); 
     }
     public void createUser(String usertype,int id,String username, String fullname, int contact, 
                            String teams,Project project, List<Board> assignedBoards){
@@ -53,7 +49,7 @@ public class Admin extends ProjectManager {
                System.out.println("User couldn't be created!");
         }
     }
-    public void createUser(int id,String username, String fullname, int contact, String teams){
-        system.addUser(new Guest());
+    public void createUser(int id,String username, String fullname, int contact, String teams,Board invitedBoard){
+        system.addUser(new Guest(id,username,fullname,contact,teams,invitedBoard));
     }
 }
