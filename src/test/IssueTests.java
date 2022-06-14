@@ -7,6 +7,11 @@ import ProjectManagementSystem.User;
 import java.util.Date;
 
 public class IssueTests {
+    public static void main(String[] args) {
+        IssueTests it = new IssueTests();
+        IssueListTests ilt = new IssueListTests();
+        CommentTests ct = new CommentTests();
+    }
     IssueTests() {
         Issue i1, i2;
         i1 = new Issue(1, "i1", Issue.Status.inProgress, Issue.Type.epic);
