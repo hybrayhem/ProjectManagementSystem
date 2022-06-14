@@ -3,13 +3,13 @@ package ProjectManagementSystem;
 import java.util.List;
 import java.util.Objects;
 
-import BST.BinarySearchTree;
+import BST.AVLTree;
 
 public class Board {
     private int id;
     private static int instanceCount = 0;
     private List<IssueList> listOfIssueList;
-    private BinarySearchTree<User> members;
+    private AVLTree<User> members;
 
     public Issue searchIssue(String issueTitle) {
         for (IssueList issueList : listOfIssueList) {
@@ -50,7 +50,7 @@ public class Board {
         this.id = ++instanceCount;
     }
 
-    public Board(List<IssueList> issues, BinarySearchTree<User> members) {
+    public Board(List<IssueList> issues, AVLTree<User> members) {
         this();
         this.listOfIssueList = issues;
         this.members = members;
