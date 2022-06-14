@@ -79,6 +79,8 @@ public class Project {
     public void editBoard(){
         // To : do
     }
+
+
     public Board getBoard(int id){
         return this.board.get(id);
     }
@@ -92,6 +94,7 @@ public class Project {
 
     public void setBoards(List<Board> board) {
         this.board = board;
+        this.board.addAll(board);
     }
 
     public Backlog getBacklog() {
