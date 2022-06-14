@@ -20,6 +20,7 @@ public class Project {
         this.name = name;
         this.type = type;
         this.projectManager = lead;
+        this.backlog = backlog;
     }
 
     public Project() {

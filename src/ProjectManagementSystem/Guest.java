@@ -10,8 +10,9 @@ public class Guest extends User{
             System.out.println(invitedBoard.toString());
         }
     }
-    public Guest(){
-        System.out.println("You are noob");
+    public Guest(int id, String username, String fullname, int contact, String teams,Board invitedBoard) {
+        super(id,username,fullname,contact,teams);
+        this.invitedBoard = invitedBoard;
     }
     public Issue.Status changeIssueStatus(Issue i, Issue.Status s){
         System.out.println("You don't have permission to change issue status!");
