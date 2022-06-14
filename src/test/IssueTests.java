@@ -11,12 +11,6 @@ public class IssueTests {
         Issue i1, i2;
         i1 = new Issue(1, "i1", Issue.Status.inProgress, Issue.Type.epic);
         i2 = new Issue(2, "i2", Issue.Status.inProgress, Issue.Type.epic);
-        try {
-
-            System.out.println(": Success");
-        } catch (Exception e) {
-            System.err.println(e + "\n" + " : Failed");
-        }
 
         try{
             System.out.println(i1.setTitle("title"));
