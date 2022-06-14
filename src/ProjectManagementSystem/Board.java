@@ -69,7 +69,7 @@ public class Board {
         return this.listOfIssueList;
     }
 
-    public BinarySearchTree<User> getMembers() {
+    public AVLTree<User> getMembers() {
         return this.members;
     }
 
