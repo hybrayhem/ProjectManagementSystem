@@ -7,7 +7,7 @@ package BST;
  * @param <E> The type of data stored. Must be a Comparable type
  */
 @SuppressWarnings("serial")
-public class BalancedBinarySearchTree<E extends Comparable<E>>
+public class BinarySearchTreeWithRotate<E extends Comparable<E>>
 	extends BinarySearchTree<E> {
 	
 	//Methods
