@@ -1,3 +1,5 @@
+package ProjectManagementSystem;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -7,11 +9,11 @@ public class Board {
     private int id;
     private static int instanceCount = 0;
     private List<IssueList> listOfIssueList;
-    private BinarySearchTree<BoardMember> members;
+    private BinarySearchTree<User> members;
 
     public Issue searchIssue(String issueTitle) {
         for (IssueList issueList : listOfIssueList) {
-            Issue found = issueList.search(issueTitle);
+            Issue found = issueList.searchInIssueList(issueTitle);
             if (found != null)
                 return found;
         }
@@ -20,20 +22,20 @@ public class Board {
 
     public boolean addIssue(Issue issue, int index) {
         if (index < listOfIssueList.size()) {
-            return listOfIssueList.get(index).add(issue);
+            return listOfIssueList.get(index).addIssue(issue);
         }
         return false;
     }
 
     public boolean removeIssue(Issue issue, int index) {
         if (index < listOfIssueList.size()) {
-            return listOfIssueList.get(index).remove(issue);
+            return listOfIssueList.get(index).deleteIssue(issue);
         }
         return false;
     }
 
     public BoardMember searchMember(BoardMember target) {
-        return members.search(target);
+        return (BoardMember) members.find(target);
     }
 
     public boolean addMember(BoardMember member) {
@@ -48,7 +50,7 @@ public class Board {
         this.id = ++instanceCount;
     }
 
-    public Board(List<IssueList> issues, BinarySearchTree<BoardMember> members) {
+    public Board(List<IssueList> issues, BinarySearchTree<User> members) {
         this();
         this.listOfIssueList = issues;
         this.members = members;
@@ -66,7 +68,7 @@ public class Board {
         return this.listOfIssueList;
     }
 
-    public BinarySearchTree<BoardMember> getMembers() {
+    public BinarySearchTree<User> getMembers() {
         return this.members;
     }
 
