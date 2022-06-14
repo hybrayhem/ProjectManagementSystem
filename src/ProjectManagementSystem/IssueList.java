@@ -35,7 +35,8 @@ public class IssueList {
         return true;
     }
 
-    public boolean deleteIssue(Issue i){
+    public boolean deleteIssue(int id){
+        Issue i = searchInIssueList(id);
         if(i == null)
             return false;
         issues.remove(i);

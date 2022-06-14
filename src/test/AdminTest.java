@@ -9,6 +9,8 @@ public class AdminTest {
         //admin.createProject();
         //admin.createUser();
         IssueTests i = new IssueTests();
+        CommentTests c = new CommentTests();
+        IssueListTests il = new IssueListTests();
 
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import BST.AVLTree;
+import BST.BinarySearchTree;
 
 public class Board {
     private int id;
@@ -29,7 +30,7 @@ public class Board {
 
     public boolean removeIssue(Issue issue, int index) {
         if (index < listOfIssueList.size()) {
-            return listOfIssueList.get(index).deleteIssue(issue);
+            return listOfIssueList.get(index).deleteIssue(issue.getId());
         }
         return false;
     }
