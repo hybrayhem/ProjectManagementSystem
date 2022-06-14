@@ -1,25 +1,24 @@
 package ProjectManagementSystem;
 
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-public class Issue implements Comparator<Issue> {
+public class Issue implements Comparable<Issue> {
 
-    enum Priority{
+    public enum Priority{
         Low,
         Medium,
         High
     }
-    enum Status{
+    public enum Status{
         development,
         inProgress,
         inReview,
         verified,
         done
     }
-    enum Type{
+    public enum Type{
         bug,
         task,
         story,
@@ -51,7 +50,8 @@ public class Issue implements Comparator<Issue> {
     }
 
     @Override
-    public int compare(Issue o1, Issue o2) {
+    public int compareTo(Issue o2) {
+        Issue o1 = this;
         if((o1.priority == Priority.High && o2.priority == Priority.Low) || (o1.priority == Priority.High && o2.priority == Priority.Medium))
             return 1;
         else if(o1.priority == Priority.Medium && o2.priority == Priority.Low)
@@ -121,20 +121,31 @@ public class Issue implements Comparator<Issue> {
         return logHistory;
     }
 
-    public void setTitle(String title) {
+    public boolean setTitle(String title) {
+        if(title.equals(""))
+            return false;
         this.title = title;
+        return true;
     }
 
-    public void setDescription(String description) {
+    public boolean setDescription(String description) {
+        if(description.equals(""))
+            return false;
         this.description = description;
+        return true;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void updateUpdateTime() {
+        Calendar c = Calendar.getInstance();
+        this.updateTime = c.getTime();
     }
 
-    public void setDueDate(Date dueDate) {
+    public boolean setDueDate(Date dueDate) {
+        Calendar c = Calendar.getInstance();
+        if(dueDate.compareTo(c.getTime()) < 1)
+            return false;
         this.dueDate = dueDate;
+        return true;
     }
 
     public void setPriority(Priority priority) {
@@ -149,22 +160,34 @@ public class Issue implements Comparator<Issue> {
         this.type = type;
     }
 
-    public void addComment(String line, User user){
+    public boolean addComment(String line, User user){
+        if(user == null || line.equals(""))
+            return false;
         int id = getLastComment().getId();
         Comment com = new Comment(id+1, user, line);
         comments.add(com);
+        return  true;
     }
 
-    public void removeComment(Comment com){
+    public boolean removeComment(Comment com){
+        if(com == null)
+            return false;
         comments.remove(com);
+        return true;
     }
 
-    public void addAssignee(User user){
+    public boolean addAssignee(User user){
+        if(user == null)
+            return false;
         assignee.insert(user);
+        return true;
     }
 
-    public void removeAssignee(User user){
+    public boolean removeAssignee(User user){
+        if(user == null)
+            return false;
         assignee.delete(user);
+        return true;
     }
 
     @Override
