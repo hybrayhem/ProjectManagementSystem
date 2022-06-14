@@ -49,4 +49,15 @@ public abstract class User implements Comparable<User>{
 
     public abstract void removeIssueComment(Issue issue);
     public abstract void addIssueComment(Issue issue, Comment comment);
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", contact=" + contact +
+                ", teams='" + teams + '\'' +
+                '}';
+    }
 }

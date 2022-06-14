@@ -1,5 +1,6 @@
 package ProjectManagementSystem;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,8 +10,39 @@ import BST.BinarySearchTree;
 public class Board {
     private int id;
     private static int instanceCount = 0;
-    private List<IssueList> listOfIssueList;
-    private AVLTree<User> members;
+    private List<IssueList> listOfIssueList = new ArrayList<>();
+    private AVLTree<User> members = new AVLTree<>();
+
+    public Board() {
+        this.id = ++instanceCount;
+    }
+
+    public Board(ArrayList<IssueList> issues, AVLTree<User> members) {
+        this();
+        this.listOfIssueList = issues;
+        this.members = members;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<IssueList> getIssues() {
+        return this.listOfIssueList;
+    }
+
+    public AVLTree<User> getMembers() {
+        return this.members;
+    }
+
+    public Board id(int id) {
+        setId(id);
+        return this;
+    }
 
     public Issue searchIssue(String issueTitle) {
         for (IssueList issueList : listOfIssueList) {
@@ -19,6 +51,10 @@ public class Board {
                 return found;
         }
         return null;
+    }
+
+    public boolean addIssueList(IssueList issueList) {
+        return listOfIssueList.add(issueList);
     }
 
     public boolean addIssue(Issue issue, int index) {
@@ -45,37 +81,6 @@ public class Board {
 
     public boolean removeMember(BoardMember member) {
         return members.remove(member);
-    }
-
-    public Board() {
-        this.id = ++instanceCount;
-    }
-
-    public Board(List<IssueList> issues, AVLTree<User> members) {
-        this();
-        this.listOfIssueList = issues;
-        this.members = members;
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<IssueList> getIssues() {
-        return this.listOfIssueList;
-    }
-
-    public AVLTree<User> getMembers() {
-        return this.members;
-    }
-
-    public Board id(int id) {
-        setId(id);
-        return this;
     }
 
     @Override
