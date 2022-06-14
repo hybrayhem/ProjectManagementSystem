@@ -1,24 +1,22 @@
 package ProjectManagementSystem;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class IssueList {
     private String title;
-    private List<Issue> issues;
+    private ArrayList<Issue> issues;
     private PriorityQueue<Issue> issueQueue;
 
     public IssueList(String title) {
         this.title = title;
+        issues = new ArrayList<>();
+        issueQueue = new PriorityQueue<>();
     }
 
 
-    public List<Issue> getIssues() {
+    public ArrayList<Issue> getIssues() {
         return issues;
-    }
-
-    public void setIssues(List<Issue> issues) {
-        this.issues = issues;
     }
 
     public PriorityQueue<Issue> getIssueQueue() {
@@ -49,13 +47,25 @@ public class IssueList {
         return title;
     }
 
-    public void setTitle(String title) {
+    public boolean setTitle(String title) {
+        if(title.equals(""))
+            return false;
         this.title = title;
+        return true;
     }
 
     public Issue searchInIssueList(String title){
         for(int i = 0; i < issues.size(); i++) {
             if (title.compareTo(issues.get(i).getTitle()) == 0) {
+                return issues.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Issue searchInIssueList(int id){
+        for(int i = 0; i < issues.size(); i++) {
+            if (issues.get(i).getId() == id) {
                 return issues.get(i);
             }
         }

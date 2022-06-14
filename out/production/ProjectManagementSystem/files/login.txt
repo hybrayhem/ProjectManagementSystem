@@ -1,3 +1,7 @@
-gtu1 gtu123456
-gtu2 gtu1234567
-gtu3 gtu12345678
+gtu1 gtu123456 ProjectManager
+gtu2 gtu1234567 ProjectMember
+gtu3 gtu12345678 Guest
+gtu4 gtu123456789 BoardMember
+gtu5 gtu12345678 Admin
+
+
