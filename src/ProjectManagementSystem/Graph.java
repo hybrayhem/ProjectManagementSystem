@@ -3,7 +3,7 @@ package ProjectManagementSystem;
 public class Graph {
 
     private int numOfNodes;
-    private float[][] matrix;
+    private int[][] matrix;
 
     /*
      This will allow us to safely add weighted graphs in our class since
@@ -16,7 +16,7 @@ public class Graph {
         this.numOfNodes = numOfNodes;
 
         // Simply initializes our adjacency matrix to the appropriate size
-        matrix = new float[numOfNodes][numOfNodes];
+        matrix = new int[numOfNodes][numOfNodes];
         isSetMatrix = new boolean[numOfNodes][numOfNodes];
     }
 
@@ -24,7 +24,7 @@ public class Graph {
  Since matrices for directed graphs are symmetrical, we have to add
  [destination][source] at the same time as [source][destination]
 */
-    public void addEdge(int source, int destination) {
+    public void addEdge(int source, int destination){
 
         matrix[source][destination] = 1;
         isSetMatrix[source][destination] = true;

@@ -56,6 +56,8 @@ public class IssueList {
     }
 
     public Issue searchInIssueList(String title){
+        if(title.equals(""))
+            return null;
         for(int i = 0; i < issues.size(); i++) {
             if (title.compareTo(issues.get(i).getTitle()) == 0) {
                 return issues.get(i);
@@ -65,6 +67,8 @@ public class IssueList {
     }
 
     public Issue searchInIssueList(int id){
+        if(id <= 0)
+            return null;
         for(int i = 0; i < issues.size(); i++) {
             if (issues.get(i).getId() == id) {
                 return issues.get(i);
