@@ -33,6 +33,7 @@ public class ProjectMemberTest {
         issues.push(issue3);
         issues.push(issue4);
         Backlog backlog = new Backlog(issues);
+        Project project3 = null;
         Project project2 = new Project();
         Project project = new Project(1, "key", "name", "type", null, null, 
                          null, backlog);
@@ -41,10 +42,22 @@ public class ProjectMemberTest {
         projectMember.viewBacklog();
         ProjectMember projectMember2 = new ProjectMember(1, "username", "fullname",
                                         1, "teams", project2, null);
+        ProjectMember projectMember3 = new ProjectMember(1, "username", "fullname", 
+                                       1, "teams", project3, null);
         try{
             projectMember2.viewBacklog();
         }catch(Exception e ){
             System.err.println("An error occured when displaying backlog");
+        }
+        try{
+            projectMember.viewProject();
+        }catch(Exception e){
+            System.err.println("An error occured when displaying project");
+        }
+        try{
+            projectMember3.viewProject();
+        }catch(Exception e){
+            System.err.println("An error occured when displaying project");
         }
     }
 }
