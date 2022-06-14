@@ -34,19 +34,24 @@ public class Comment {
         return creationDate;
     }
 
-    public void setId(int id) {
+    public boolean setId(int id) {
+        if(id <= 0)
+            return false;
         this.id = id;
+        return true;
     }
 
-    public void setOwner(User owner) {
+    public boolean setOwner(User owner) {
+        if(owner == null)
+            return false;
         this.owner = owner;
+        return true;
     }
 
-    public void setData(String data) {
+    public boolean setData(String data) {
+        if(data.equals(""))
+            return false;
         this.data = data;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        return true;
     }
 }

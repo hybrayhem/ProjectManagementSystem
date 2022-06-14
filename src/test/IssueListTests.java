@@ -9,13 +9,6 @@ public class IssueListTests {
 
 
         try {
-
-            System.out.println(": Success");
-        } catch (Exception e) {
-            System.err.println(e + "\n" + " : Failed");
-        }
-
-        try {
             System.out.println(list.addIssue(new Issue(1, "1", Issue.Status.development, Issue.Type.epic)));
             System.out.println(list.addIssue(new Issue(2, "2", Issue.Status.development, Issue.Type.bug)));
             System.out.println(list.addIssue(null));
