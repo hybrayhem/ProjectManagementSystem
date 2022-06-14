@@ -72,5 +72,6 @@ public class AdminTest {
         }catch(Exception e){
             System.err.println("User couldn't be created!");
         }
-    } 
+    }
+ 
 }
