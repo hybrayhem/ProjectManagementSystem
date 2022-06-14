@@ -2,7 +2,7 @@ package ProjectManagementSystem;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Issue implements Comparable<Issue> {
 
@@ -37,8 +37,8 @@ public class Issue implements Comparable<Issue> {
     private Issue childIssue;
 
     public SkipList<User> assignee = new SkipList<User>();
-    public List<String> logHistory;
-    private List<Comment> comments;
+    public ArrayList<String> logHistory = new ArrayList<>();
+    private ArrayList<Comment> comments = new ArrayList<>();
 
     public Issue(int id, String title, Status status, Type type) {
         Calendar c = Calendar.getInstance();
@@ -103,6 +103,13 @@ public class Issue implements Comparable<Issue> {
         return type;
     }
 
+    public boolean addChildIssue(Issue i){
+        if(i == null)
+            return false;
+        childIssue = i;
+        return true;
+    }
+
     public Issue getChildIssue() {
         return childIssue;
     }
@@ -117,7 +124,7 @@ public class Issue implements Comparable<Issue> {
         return assignee;
     }
 
-    public List<String> getLogHistory(){
+    public ArrayList<String> getLogHistory(){
         return logHistory;
     }
 
