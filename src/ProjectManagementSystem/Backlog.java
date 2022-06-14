@@ -4,7 +4,7 @@ import java.util.Stack;
 import java.util.Objects;
 
 public class Backlog {
-    private Stack<Issue> issues;
+    private Stack<Issue> issues = new Stack<>();
 
     public Backlog() {
         // Intentionally left empty
