@@ -1,3 +1,5 @@
+package ProjectManagementSystem;
+
 import java.util.List;
 
 public class ProjectManager extends ProjectMember {
@@ -5,7 +7,7 @@ public class ProjectManager extends ProjectMember {
                           String teams, Project project, List<Board> assignedBoards){
         super(id, username, fullname, contact, teams, project, assignedBoards);             
     }
-    public void assingUser(Issue issue,User user){
+    public void assignUser(Issue issue,User user){
         if(issue == null){
             System.out.println("User cannot be assigned because the issue doesn't exist.");
         }

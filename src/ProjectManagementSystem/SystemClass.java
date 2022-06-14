@@ -1,3 +1,5 @@
+package ProjectManagementSystem;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -5,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SystemClass {
-    private static final String filePath = "./files/login.txt";
+    private static final String filePath = "files/login.txt";
     private Admin admin;
     public List<Project> projects;
 
@@ -25,11 +27,11 @@ public class SystemClass {
         users = new ArrayList<>();
     }
 
-    public boolean login() throws FileNotFoundException {
+    public String login() throws FileNotFoundException {
 
         Scanner scanner = new Scanner(System.in);
         String username_input, username_real="";
-        String password_input, password_real="";
+        String password_input, password_real="", userType = null;
         int remainTrying = 3;
 
         File myObj = new File(filePath);
@@ -49,6 +51,7 @@ public class SystemClass {
                 Scanner sc=new Scanner(data);
                 username_real = sc.next();
                 password_real = sc.next();
+                userType = sc.next();
 
                 if (username_input.equals(username_real)){
                     break;
@@ -59,7 +62,6 @@ public class SystemClass {
 
             if (username_real.equals(username_input) && password_real.equals(password_input)) {
                 System.out.println("Login Sucesfully...");
-                return true;
             } else {
                 remainTrying--;
                 System.out.println("Wrong username or password..");
@@ -70,7 +72,7 @@ public class SystemClass {
                 System.out.println("You have " + remainTrying + " entrie(s) left. Try again..");
             }
         }
-        return false;
+        return userType;
     }
 
     public Admin getAdmin() {
