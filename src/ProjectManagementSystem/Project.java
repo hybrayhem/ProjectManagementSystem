@@ -105,5 +105,40 @@ public class Project {
     public void setBacklog(Backlog backlog) {
         this.backlog = backlog;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Id:"+id+"\n");
+        if(name != null){
+            sb.append("Name:"+name+"\n");
+        }else{
+            sb.append("Name: undefined\n");
+        }
+        if(type != null){
+            sb.append("Type:"+type+"\n");
+        }else{
+            sb.append("Type: undefined\n");
+        }
+        if(projectManager != null){
+            sb.append("Manager:"+projectManager+"\n");
+        }else{
+            sb.append("Manager: undefined\n");
+        }if(board != null){
+            sb.append("Boards:\n"+board.toString()+"\n");
+        }else{
+            sb.append("Boards: undefined\n");
+        }
+        if(backlog != null){
+            sb.append("Backlog:\n"+backlog.toString()+"\n");
+        }else{
+            sb.append("Backlog: undefined\n");
+        }
+        if(users != null){
+            sb.append("Users:"+users.toString()+"\n");
+        }else{
+            sb.append("Users: undefined\n");
+        }
+        return sb.toString();
+    }
 
 }
