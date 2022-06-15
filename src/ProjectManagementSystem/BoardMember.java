@@ -18,6 +18,10 @@ public class BoardMember extends User implements Serializable {
         super(id, username, fullname, contact, teams);
     }
 
+    public BoardMember(int id, String username, String fullname, String password) {
+        super(id, username, fullname, password);
+    }
+
     // Methods
     @Override
     public void viewBoard(Board board) {

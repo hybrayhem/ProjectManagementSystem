@@ -9,12 +9,22 @@ public abstract class User implements Comparable<User>, Serializable{
     private int id;
     /**   */
     private String username;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**  */
     private String fullname;
     /**  */
     private int contact;
     /**  */
     private String teams;
+    private String password;
 
     // Constructors
     public User(int id, String username, String fullname, int contact, String teams) {
@@ -23,6 +33,12 @@ public abstract class User implements Comparable<User>, Serializable{
         this.fullname = fullname;
         this.contact = contact;
         this.teams = teams;
+    }
+    public User(int id, String username, String fullname, String password){
+        this.id = id;
+        this.username = username;
+        this.fullname = fullname;
+        this.password = password;
     }
 
     @Override

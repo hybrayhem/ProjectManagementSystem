@@ -10,6 +10,9 @@ public class ProjectMember extends BoardMember implements Serializable{
         super(id,username,fullname,contact,teams,assignedBoards);
         this.project = project;
     }
+    public ProjectMember(int id, String username, String fullname, String password) {
+        super(id, username, fullname, password);
+    }
     public void viewBacklog(){
         if(project.getBacklog() == null){
             System.out.println("There is no backlog to view.");
