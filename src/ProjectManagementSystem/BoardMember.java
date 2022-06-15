@@ -1,9 +1,10 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
 import java.util.List;
 
 /** Users who are assigned to a specific board. */
-public class BoardMember extends User  {
+public class BoardMember extends User implements Serializable {
     // Data Fields
     /** */
     private List<Board> assignedBoards;

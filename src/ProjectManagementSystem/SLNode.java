@@ -1,6 +1,8 @@
 package ProjectManagementSystem;
 
-public class SLNode<E> {
+import java.io.Serializable;
+
+public class SLNode<E> implements Serializable {
 
     public SLNode[] next;
 

@@ -1,7 +1,9 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
+
 /** User of the System. */
-public abstract class User implements Comparable<User>{
+public abstract class User implements Comparable<User>, Serializable{
     // Data Fields
     /**  */
     private int id;
@@ -39,6 +41,21 @@ public abstract class User implements Comparable<User>{
 
     public User(User guest) {
 
+    }
+    public int getId(){
+        return id;
+    }
+    public String getUsername(){
+        return username;
+    }
+    public String getFullname(){
+        return fullname;
+    }
+    public int getContact(){
+        return contact;
+    }
+    public String getTeams(){
+        return teams;
     }
 
     // Methods

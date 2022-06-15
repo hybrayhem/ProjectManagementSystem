@@ -1,7 +1,13 @@
 package ProjectManagementSystem;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,19 +18,20 @@ public class SystemClass {
     public List<Project> projects;
 
     private final ArrayList<User> users;
-
+    
+    
     public void addUser(User user){
         this.users.add(user);
     }
 
     public SystemClass(Admin admin) {
+        this();
         this.admin = admin;
-        this.projects = new ArrayList<>();
-         users = new ArrayList<>();
     }
     public SystemClass(){
         this.projects = new ArrayList<>();
         users = new ArrayList<>();
+        loadUsers();
     }
 
     public String login() throws FileNotFoundException {
@@ -95,5 +102,99 @@ public class SystemClass {
 
     public void setProjects(List<Project> project) {
         this.projects = project;
+    }
+    /**
+     * Load the saved users from users.bin file
+     */
+    public void loadUsers(){
+        try
+        {
+            ObjectInputStream o = new ObjectInputStream(new FileInputStream("users.bin"));
+            try{
+                while(true){
+                    users.add((User) o.readObject());
+                }
+            }catch(EOFException e){
+                System.out.println("All the users are loaded");
+            }            
+            o.close();
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println(e);
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println(e);
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+    /**
+     * Save the users into users.bin file 
+     * This method will be called when the user exit the program
+     */
+    public void saveUsers(){
+        try
+        {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("users.bin"));
+            for(int i = 0; i < users.size();i++){
+                o.writeObject(users.get(i));
+            }
+            o.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+     /**
+     * Load the saved projects from projects.bin file
+     */
+    public void loadProjects(){
+        try
+        {
+            ObjectInputStream o = new ObjectInputStream(new FileInputStream("projects.bin"));
+            try{
+                while(true){
+                    projects.add((Project) o.readObject());
+                }
+            }catch(EOFException e){
+                System.out.println("All the projects are loaded");
+            }            
+            o.close();
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println(e);
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println(e);
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+    /**
+     * Save the projects into projects.bin file 
+     * This method will be called when the user exit the program
+     */
+    public void saveProjects(){
+        try
+        {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("projects.bin"));
+            for(int i = 0; i < projects.size();i++){
+                o.writeObject(projects.get(i));
+            }
+            o.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
     }
 }

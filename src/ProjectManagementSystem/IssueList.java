@@ -1,9 +1,10 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-public class IssueList {
+public class IssueList implements Serializable {
     private String title;
     private ArrayList<Issue> issues;
     private PriorityQueue<Issue> issueQueue;

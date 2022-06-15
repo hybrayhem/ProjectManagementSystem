@@ -1,11 +1,12 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 
-    public class SkipList<E extends Comparable<E>> {
+    public class SkipList<E extends Comparable<E>> implements Serializable {
 
         private final int MAX_LEVEL =10;
 

@@ -2,9 +2,10 @@ package ProjectManagementSystem;
 
 import BST.BinarySearchTree;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Project {
+public class Project implements Serializable{
     private int id;
     private String key;
     private String name;

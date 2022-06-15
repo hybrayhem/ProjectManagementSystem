@@ -1,5 +1,6 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +8,7 @@ import java.util.Objects;
 import BST.AVLTree;
 import BST.BinarySearchTree;
 
-public class Board {
+public class Board implements Serializable{
     private int id;
     private static int instanceCount = 0;
     private List<IssueList> listOfIssueList = new ArrayList<>();

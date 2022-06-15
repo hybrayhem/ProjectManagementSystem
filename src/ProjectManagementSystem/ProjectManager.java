@@ -1,8 +1,9 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ProjectManager extends ProjectMember {
+public class ProjectManager extends ProjectMember implements Serializable{
     public ProjectManager(int id, String username,String fullname, int contact, 
                           String teams, Project project, List<Board> assignedBoards){
         super(id, username, fullname, contact, teams, project, assignedBoards);             

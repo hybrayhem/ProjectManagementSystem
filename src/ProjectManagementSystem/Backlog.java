@@ -1,9 +1,10 @@
 package ProjectManagementSystem;
 
 import java.util.Stack;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Backlog {
+public class Backlog implements Serializable{
     private Stack<Issue> issues = new Stack<>();
 
     public Backlog() {

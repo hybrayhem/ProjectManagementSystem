@@ -2,9 +2,10 @@ package ProjectManagementSystem;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Issue implements Comparable<Issue> {
+public class Issue implements Comparable<Issue>,Serializable {
 
     public enum Priority{
         Low,
