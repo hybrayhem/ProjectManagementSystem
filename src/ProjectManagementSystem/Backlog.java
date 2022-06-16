@@ -4,7 +4,7 @@ import java.util.Stack;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Backlog implements Serializable{
+public class Backlog implements Serializable {
     private Stack<Issue> issues = new Stack<>();
 
     public Backlog() {
@@ -15,16 +15,16 @@ public class Backlog implements Serializable{
         this.issues = issues;
     }
 
-    
-    /** 
+
+    /**
      * @param issue
      */
     public void addIssue(Issue issue) {
         issues.push(issue);
     }
 
-    
-    /** 
+
+    /**
      * @param issue
      */
     public void removeIssue(Issue issue) {
@@ -35,24 +35,24 @@ public class Backlog implements Serializable{
         issues.pop();
     }
 
-    
-    /** 
+
+    /**
      * @return Issue
      */
     public Issue getTopIssue() {
         return issues.peek();
     }
 
-    
-    /** 
+
+    /**
      * @return Stack<Issue>
      */
     public Stack<Issue> getIssues() {
         return this.issues;
     }
 
-    
-    /** 
+
+    /**
      * @param o
      * @return boolean
      */
@@ -67,8 +67,8 @@ public class Backlog implements Serializable{
         return Objects.equals(issues, backlog.issues);
     }
 
-    
-    /** 
+
+    /**
      * @return int
      */
     @Override
@@ -76,16 +76,21 @@ public class Backlog implements Serializable{
         return Objects.hashCode(issues);
     }
 
-    
-    /** 
+
+    /**
      * @return String
      */
     @Override
     public String toString() {
-        // TODO: refactor according to menu design
-        return "{" +
-                " issues='" + getIssues() + "'" +
-                "}";
+        StringBuilder issuesSb = new StringBuilder();
+        for(Issue issue : getIssues()) {
+            issuesSb.append(issue.toString() + "\n");
+        }
+        return "\n" + "*".repeat(38) + "  Backlog  " + "*".repeat(39) + "\n" +
+                String.format("%-3s %-20s %-12s %-8s %-11s %-20s %-20s", "ID", "Title", "Status", "Priority", "Due Date", "Description", "Comments") + "\n" +
+                 issuesSb +
+                "*".repeat(88) + "\n";
     }
+
 
 }

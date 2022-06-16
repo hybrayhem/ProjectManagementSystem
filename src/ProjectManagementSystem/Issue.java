@@ -214,28 +214,12 @@ public class Issue implements Comparable<Issue>,Serializable {
 
     @Override
     public String toString() {
-        String rtrn = "id:" + String.valueOf(id) + " " + updateTime.toString() + "\n";
-        rtrn = rtrn.concat(title + "\nStatus:" + status.toString()+" Type:"+ type.toString());
-        if(priority != null)
-            rtrn = rtrn.concat(" Priority:"+ priority.toString());
-
-        if(dueDate != null)
-            rtrn = rtrn.concat(" Due date:"+ dueDate.toString()+"\n");
-        else
-            rtrn = rtrn.concat("\n");
-
-        if(description != "")
-            rtrn = rtrn.concat("*"+description+"*\n");
-        else
-            rtrn = rtrn.concat("\n");
-
-        if(comments.size() != 0){
-            rtrn = rtrn.concat("\n\nComments:\n");
-            for(int i = 0; i < comments.size(); i++)
-                rtrn = rtrn.concat(comments.get(i).toString()+"\n");
-        }
-
-
-        return rtrn;
+        return String.format("%-3d %-20s %-12s %-8s %-11s %-20s %-20s", id,
+                title==null?"-":title.toString(),
+                status==null?"-":status.toString(),
+                priority==null?"-":priority.toString(),
+                dueDate==null?"-":String.format("%2d:%2d:%4d", dueDate.getDay(), dueDate.getMonth(), dueDate.getYear()),
+                description==null?"-":description,
+                comments.toString());
     }
 }

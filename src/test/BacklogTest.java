@@ -23,7 +23,7 @@ public class BacklogTest {
             System.out.println("Error: " + e);
         }
         System.out.println("Add issue: " + success);
-        System.out.println(backlog.getIssues().toString() + "\n");
+        System.out.println(backlog.toString() + "\n");
 
         System.out.println("Get top issue: " + backlog.getTopIssue().toString() + "\n");
 
@@ -37,7 +37,7 @@ public class BacklogTest {
             System.out.println("Error: " + e);
         }
         System.out.println("Remove first and last issue: " + success);
-        System.out.println(backlog.getIssues().toString());
+        System.out.println(backlog.toString());
 
 
     }
