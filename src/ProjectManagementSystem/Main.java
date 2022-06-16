@@ -407,6 +407,8 @@ class Main {
                         for(int i = 0; i < sortedIssues.size();i++){
                             System.out.println(sortedIssues.get(i));
                         }
+                    }else{
+                        System.out.println("Issue list doesn't exist");
                     }
                 }
             } else if (opt == 2) {
@@ -426,6 +428,8 @@ class Main {
                         for(int i = 0; i < sortedIssues.size();i++){
                             System.out.println(sortedIssues.get(i));
                         }
+                    }else{
+                        System.out.println("Issue list doesn't exist");
                     }
                 }
             } else if (opt == 3) {
