@@ -18,7 +18,7 @@ public class AdminTest {
         system.setAdmin(admin);
         try{
             System.out.println("Valid issue list given");
-            admin.createIssue(issueList, 1, "title", Issue.Status.development, Issue.Type.task);
+            admin.createIssue(issueList, "title", Issue.Status.development, Issue.Type.task);
             if(issueList.getIssues().size() > 0){
                 System.out.println("Issue created succesfully.");
             }else{
@@ -29,7 +29,7 @@ public class AdminTest {
         }
         try{
             System.out.println("Invalid issue list given");
-            admin.createIssue(nullIssueList, 1, "title", Issue.Status.development, Issue.Type.task);
+            admin.createIssue(nullIssueList, "title", Issue.Status.development, Issue.Type.task);
         }catch(Exception e){
             System.err.println("Issue couldn't be created!");
         }

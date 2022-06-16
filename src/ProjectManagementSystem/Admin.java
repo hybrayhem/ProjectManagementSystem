@@ -1,6 +1,4 @@
 package ProjectManagementSystem;
-
-import java.util.Date;
 import java.util.List;
 
 import BST.BinarySearchTree;
@@ -31,10 +29,10 @@ public class Admin extends ProjectManager {
     public void createEmptyProject(){
         system.projects.add(new Project());
     }
-
-    public void createIssue(IssueList issueList, int id, String title, Enum status, Enum type )
+    
+    public void createIssue(IssueList issueList, String title, Enum status, Enum type )
     {
-        Issue issue = new Issue(id,title, (Issue.Status) status, (Issue.Type) type);
+        Issue issue = new Issue(title, (Issue.Status) status, (Issue.Type) type);
         if(issueList == null){
             System.out.println("Issue couldn't be added, try to add somewhere else.");
         }

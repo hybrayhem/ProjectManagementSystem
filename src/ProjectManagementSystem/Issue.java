@@ -179,6 +179,9 @@ public class Issue implements Comparable<Issue>,Serializable {
     public void setType(Type type) {
         this.type = type;
     }
+    public ArrayList<Comment> getComments(){
+        return comments;
+    }
 
     public boolean addComment(String line, User user){
         if(user == null || line.equals(""))

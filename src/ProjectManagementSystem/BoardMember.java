@@ -31,8 +31,9 @@ public class BoardMember extends User implements Serializable {
         System.out.println("You don't have permission to change issue status!");
         return null;
     }
-    public void editIssueTitle(Issue i, String s){
+    public String editIssueTitle(Issue i, String s){
         System.out.println("You don't have permission to edit issue title!");
+        return null;
     }
     public void editIssueComment(){
         System.out.println("You don't have permission to edit issue comment!");
@@ -40,7 +41,16 @@ public class BoardMember extends User implements Serializable {
     public void removeIssueComment(Issue i){
         System.out.println("You don't have permission to remove issue comment!");
     }
-    public void addIssueComment(Issue i, Comment c){
+    public boolean removeIssueComment(Issue issue,String data){
+        System.out.println("You don't have permission to remove issue comment!");
+        return false;
+    }
+    public boolean addIssueComment(Issue issue, String line, User user){
         System.out.println("You don't have permission to add issue comment!");
+        return false;
+    }
+    public boolean addIssueComment(Issue i, Comment c){
+        System.out.println("You don't have permission to add issue comment!");
+        return false;
     }
 }

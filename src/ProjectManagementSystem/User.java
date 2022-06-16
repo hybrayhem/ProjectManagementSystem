@@ -75,13 +75,60 @@ public abstract class User implements Comparable<User>, Serializable{
     }
 
     // Methods
-    public abstract void viewBoard(Board board);
+    public void viewBoard(Board board){
+        System.out.println(board.toString());
+    }
     
-    public abstract Issue.Status changeIssueStatus(Issue issue, Issue.Status status);
-    public abstract void editIssueTitle(Issue issue, String title) ;
+    public Issue.Status changeIssueStatus(Issue issue, Issue.Status status){
+        Issue.Status previousStatus = issue.getStatus();
+        issue.setStatus(status);
+        return previousStatus;
+    }
+    public String editIssueTitle(Issue issue, String title){
+        String previousTitle = issue.getTitle();
+        issue.setTitle(title);
+        return previousTitle;
+    }
 
-    public abstract void removeIssueComment(Issue issue);
-    public abstract void addIssueComment(Issue issue, Comment comment);
+    public boolean removeIssueComment(Issue issue,Comment comment){
+        if(issue == null){
+            System.out.println("No issue found");
+            return false;
+        }else if(comment == null){
+            System.out.println("Invalid comment");
+            return false;
+        }
+        return issue.removeComment(comment);
+    }
+    public boolean removeIssueComment(Issue issue,String data){
+        if(issue == null){
+            System.out.println("No issue found");
+            return false;
+        }else if(data == null){
+            System.out.println("Invalid comment");
+            return false;
+        }
+        for(int i = 0; i < issue.getComments().size();i++){
+            if(issue.getComments().get(i).getData().equals(data)){
+                return issue.removeComment(issue.getComments().get(i));
+            }
+        }
+        return false;
+    }
+    public boolean addIssueComment(Issue issue, String line, User user){
+        if(issue == null){
+            System.out.println("No issue found");
+            return false;
+        }
+        return issue.addComment(line, user);
+    }
+    public boolean addIssueComment(Issue issue, Comment comment){
+        if(issue == null){
+            System.out.println("No issue found");
+            return false;
+        }
+        return issue.addComment(comment.getData(), comment.getOwner());
+    }
 
     @Override
     public String toString() {
