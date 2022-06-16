@@ -29,9 +29,9 @@ public class BoardTest {
 
 
         // Test issues
-        Issue s1 = new Issue(0, "Issue One", Issue.Status.development, Issue.Type.task);
-        Issue s2 = new Issue(1, "Issue Two", Issue.Status.development, Issue.Type.story);
-        Issue s3 = new Issue(2, "Issue Three", Issue.Status.inProgress, Issue.Type.bug);
+        Issue s1 = new Issue("Issue One", Issue.Status.development, Issue.Type.task);
+        Issue s2 = new Issue("Issue Two", Issue.Status.development, Issue.Type.story);
+        Issue s3 = new Issue("Issue Three", Issue.Status.inProgress, Issue.Type.bug);
         IssueList issueList = new IssueList("Todo");
 
         success = false;

@@ -8,7 +8,7 @@ public class ProjectManagerTest {
     ProjectManagerTest(){
         Project project = new Project();
         User user = new ProjectMember(1, "username", "fullname", 1, "teams", project, null);
-        Issue issue = new Issue(1, "title", Issue.Status.development, Issue.Type.task);
+        Issue issue = new Issue("title", Issue.Status.development, Issue.Type.task);
         ProjectManager projectManager = new ProjectManager(1, "username", "fullname"
                                         , 1, "teams", project, null);
         projectManager.assignUser(issue, user);
