@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ProjectManager extends ProjectMember implements Serializable{
-    public ProjectManager(int id, String username,String fullname, int contact, 
+    public ProjectManager( String username,String fullname, int contact, 
                           String teams, Project project, List<Board> assignedBoards){
-        super(id, username, fullname, contact, teams, project, assignedBoards);             
+        super( username, fullname, contact, teams, project, assignedBoards);             
     }
-    public ProjectManager(int id, String username,String fullname, int contact, 
+    public ProjectManager( String username,String fullname, int contact, 
                           String teams, Project project, Board assignedBoard){
-        super(id, username, fullname, contact, teams, project, assignedBoard);             
+        super( username, fullname, contact, teams, project, assignedBoard);             
     }
-    public ProjectManager(int id, String username, String fullname, String password){
-        super(id, username, fullname, password);
+    public ProjectManager( String username, String fullname, String password){
+        super( username, fullname, password);
     }
     public void assignUser(Issue issue,User user){
         if(issue == null){

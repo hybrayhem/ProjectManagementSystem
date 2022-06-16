@@ -67,7 +67,7 @@ public class IssueTests {
         }
 
         try{
-            System.out.println(i1.addComment("bla bla", new BoardMember(1, "c", "b", 2, "a")));
+            System.out.println(i1.addComment("bla bla", new BoardMember( "c", "b", 2, "a")));
             System.out.println("Issue addComment: Success");
         }catch (Exception e){
             System.err.println(e+"\n"+"Issue addComment: Failed");
@@ -81,14 +81,14 @@ public class IssueTests {
         }
 
         try{
-            System.out.println(i1.addAssignee( new BoardMember(1, "c", "b", 2, "a")));
+            System.out.println(i1.addAssignee( new BoardMember( "c", "b", 2, "a")));
             System.out.println("Issue addAssignee: Success");
         }catch (Exception e){
             System.err.println(e+"\n"+"Issue addAssignee: Failed");
         }
 
         try{
-            System.out.println(i1.removeAssignee(new BoardMember(1, "c", "b", 2, "a")));
+            System.out.println(i1.removeAssignee(new BoardMember( "c", "b", 2, "a")));
             System.out.println("Issue removeAssignee: Success");
         }catch (Exception e){
             System.err.println(e+"\n"+"Issue removeAssignee: Failed");

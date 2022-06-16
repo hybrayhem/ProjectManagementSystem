@@ -8,9 +8,9 @@ import ProjectManagementSystem.User;
 public class ProjectManagerTest {
     ProjectManagerTest(){
         Project project = new Project();
-        User user = new ProjectMember(1, "username", "fullname", 1, "teams", project, new Board());
+        User user = new ProjectMember( "username", "fullname", 1, "teams", project, new Board());
         Issue issue = new Issue("title", Issue.Status.development, Issue.Type.task);
-        ProjectManager projectManager = new ProjectManager(1, "username", "fullname"
+        ProjectManager projectManager = new ProjectManager( "username", "fullname"
                                         , 1, "teams", project, new Board());
         projectManager.assignUser(issue, user);
         if(issue.getAssignees().contains(user)){

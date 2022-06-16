@@ -6,7 +6,7 @@ import java.io.Serializable;
 public abstract class User implements Comparable<User>, Serializable{
     // Data Fields
     /**  */
-    private int id;
+    private static int id = 0;
     /**   */
     private String username;
 
@@ -27,15 +27,15 @@ public abstract class User implements Comparable<User>, Serializable{
     private String password;
 
     // Constructors
-    public User(int id, String username, String fullname, int contact, String teams) {
-        this.id = id;
+    public User( String username, String fullname, int contact, String teams) {
+        id++;
         this.username = username;
         this.fullname = fullname;
         this.contact = contact;
         this.teams = teams;
     }
-    public User(int id, String username, String fullname, String password){
-        this.id = id;
+    public User( String username, String fullname, String password){
+        id++;
         this.username = username;
         this.fullname = fullname;
         this.password = password;
