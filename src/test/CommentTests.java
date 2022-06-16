@@ -5,7 +5,7 @@ import ProjectManagementSystem.Comment;
 
 public class CommentTests {
     CommentTests(){
-        Comment com = new Comment(1, new BoardMember(12, "bb", "bb", 1, "a"), "bla bla");
+        Comment com = new Comment(new BoardMember(12, "bb", "bb", 1, "a"), "bla bla");
 
         try {
             System.out.println(com.getId());

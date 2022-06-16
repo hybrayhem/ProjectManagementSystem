@@ -82,4 +82,17 @@ public class IssueList implements Serializable {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        String rtrn = "----------------------------------------\n";
+        rtrn = rtrn.concat("           "+title+"\n");
+        rtrn = rtrn.concat("----------------------------------------\n");
+        if(issues != null){
+            for (int i = 0; i < issues.size(); i++)
+                rtrn = rtrn.concat(issues.get(i).toString()+"\n");
+            rtrn = rtrn.concat("----------------------------------------\n");
+        }
+        return rtrn;
+    }
 }

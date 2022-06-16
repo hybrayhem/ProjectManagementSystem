@@ -27,25 +27,31 @@ public class Issue implements Comparable<Issue>,Serializable {
     }
 
     private int id;
-    private String title;
-    private String description;
+    private static int instanceCount = 0;
+    private String title = "";
+    private String description = "";
     private Date createTime;
     private Date updateTime;
     private Date dueDate;
     private Priority priority;
     private Status status;
     private Type type;
-    private Issue childIssue;
+    private Issue childIssue;//TODO: bunu ya ayri class yapmak lazim ya da graphta implement etmek idk
 
     public SkipList<User> assignee = new SkipList<User>();
     public ArrayList<String> logHistory = new ArrayList<>();
     private ArrayList<Comment> comments = new ArrayList<>();
 
-    public Issue(int id, String title, Status status, Type type) {
+    public Issue(){
+        id = ++instanceCount;
+    }
+
+    public Issue(String title, Status status, Type type) {
+        this();
         Calendar c = Calendar.getInstance();
-        this.id = id;
         this.title = title;
         this.createTime = c.getTime();
+        this.updateTime = createTime;
         this.status = status;
         this.type = type;
     }
@@ -53,16 +59,22 @@ public class Issue implements Comparable<Issue>,Serializable {
     @Override
     public int compareTo(Issue o2) {
         Issue o1 = this;
-        if((o1.priority == Priority.High && o2.priority == Priority.Low) || (o1.priority == Priority.High && o2.priority == Priority.Medium))
+        if((o1.priority == Priority.High && o2.priority == Priority.Low) || (o1.priority == Priority.High && o2.priority == Priority.Medium) ||
+                (o1.priority == Priority.High && o2.priority == null))
             return 1;
-        else if(o1.priority == Priority.Medium && o2.priority == Priority.Low)
+        else if((o1.priority == Priority.Medium && o2.priority == Priority.Low) || (o1.priority == Priority.Medium && o2.priority == null))
             return 1;
-        else if((o2.priority == Priority.High && o1.priority == Priority.Low) || (o2.priority == Priority.High && o1.priority == Priority.Medium))
+        else if(o1.priority == Priority.Low && o2.priority == null)
+            return 1;
+        else if((o2.priority == Priority.High && o1.priority == Priority.Low) || (o2.priority == Priority.High && o1.priority == Priority.Medium) ||
+                (o2.priority == Priority.High && o1.priority == null))
             return -1;
-        else if(o2.priority == Priority.Medium && o1.priority == Priority.Low)
+        else if((o2.priority == Priority.Medium && o1.priority == Priority.Low) || (o2.priority == Priority.Medium && o1.priority == null))
+            return -1;
+        else if (o2.priority == Priority.Low && o1.priority == null)
             return -1;
         else if((o2.priority == Priority.High && o1.priority == Priority.High) || (o2.priority == Priority.Medium && o1.priority == Priority.Medium)
-                || (o2.priority == Priority.Low && o1.priority == Priority.Low))
+                || (o2.priority == Priority.Low && o1.priority == Priority.Low) || (o2.priority == null && o1.priority == null))
             return 0;
         else
             return 0;
@@ -117,7 +129,7 @@ public class Issue implements Comparable<Issue>,Serializable {
 
     public Comment getLastComment(){
         if(comments.isEmpty())
-            return new Comment(0, null, "");
+            return null;
         return comments.get(comments.size()-1);
     }
 
@@ -171,8 +183,7 @@ public class Issue implements Comparable<Issue>,Serializable {
     public boolean addComment(String line, User user){
         if(user == null || line.equals(""))
             return false;
-        int id = getLastComment().getId();
-        Comment com = new Comment(id+1, user, line);
+        Comment com = new Comment(user, line);
         comments.add(com);
         return  true;
     }
@@ -200,7 +211,28 @@ public class Issue implements Comparable<Issue>,Serializable {
 
     @Override
     public String toString() {
-        String rtrn = Integer.toString(id) + "\n" + description + dueDate.toString() + priority.toString(); //TODO: handle nullPointerException
+        String rtrn = "id:" + String.valueOf(id) + " " + updateTime.toString() + "\n";
+        rtrn = rtrn.concat(title + "\nStatus:" + status.toString()+" Type:"+ type.toString());
+        if(priority != null)
+            rtrn = rtrn.concat(" Priority:"+ priority.toString());
+
+        if(dueDate != null)
+            rtrn = rtrn.concat(" Due date:"+ dueDate.toString()+"\n");
+        else
+            rtrn = rtrn.concat("\n");
+
+        if(description != "")
+            rtrn = rtrn.concat("*"+description+"*\n");
+        else
+            rtrn = rtrn.concat("\n");
+
+        if(comments.size() != 0){
+            rtrn = rtrn.concat("\n\nComments:\n");
+            for(int i = 0; i < comments.size(); i++)
+                rtrn = rtrn.concat(comments.get(i).toString()+"\n");
+        }
+
+
         return rtrn;
     }
 }

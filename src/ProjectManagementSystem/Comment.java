@@ -1,18 +1,23 @@
 package ProjectManagementSystem;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Calendar;
 
-public class Comment {
+public class Comment implements Serializable {
 
     private int id;
+    private static int instanceCount = 0;
     private User owner;
     private String data;
     private Date creationDate;
 
-    public Comment(int id, User owner, String data) {
+    public Comment(){
+        id = ++instanceCount;
+    }
+    public Comment(User owner, String data) {
+        this();
         Calendar c = Calendar.getInstance();
-        this.id = id;
         this.owner = owner;
         this.data = data;
         this.creationDate = c.getTime();
@@ -35,7 +40,7 @@ public class Comment {
     }
 
     public boolean setId(int id) {
-        if(id <= 0)
+        if(id < 0)
             return false;
         this.id = id;
         return true;
@@ -53,5 +58,12 @@ public class Comment {
             return false;
         this.data = data;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        String rtrn = "id:" + String.valueOf(id) + " " + creationDate.toString() + " Commenter:"+ owner.toString()+"\n";
+        rtrn.concat("*"+data+"*\n");
+        return rtrn;
     }
 }

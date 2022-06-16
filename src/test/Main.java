@@ -30,6 +30,5 @@ public class Main {
         QuickSortTests qt = new QuickSortTests();
         /*ProjectManagerTest pmt = new ProjectManagerTest();
         ProjectMemberTest pmembert = new ProjectMemberTest();*/
-       
     }
 }

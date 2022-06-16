@@ -11,10 +11,10 @@ public class IssueListTests {
 
 
         try {
-            System.out.println(list.addIssue(new Issue(1, "1", Issue.Status.development, Issue.Type.epic)));
-            System.out.println(list.addIssue(new Issue(2, "2", Issue.Status.development, Issue.Type.bug)));
+            System.out.println(list.addIssue(new Issue( "1", Issue.Status.development, Issue.Type.epic)));
+            System.out.println(list.addIssue(new Issue( "2", Issue.Status.development, Issue.Type.bug)));
             System.out.println(list.addIssue(null));
-            System.out.println(list.addIssue(new Issue(3, "3", Issue.Status.inProgress, Issue.Type.story)));
+            System.out.println(list.addIssue(new Issue( "3", Issue.Status.inProgress, Issue.Type.story)));
             System.out.println("Issue List addIssue: Success");
         } catch (Exception e) {
             System.err.println(e + "\n" + "Issue List addIssue : Failed");

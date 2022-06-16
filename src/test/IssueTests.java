@@ -14,8 +14,8 @@ public class IssueTests {
     }
     IssueTests() {
         Issue i1, i2;
-        i1 = new Issue(1, "i1", Issue.Status.inProgress, Issue.Type.epic);
-        i2 = new Issue(2, "i2", Issue.Status.inProgress, Issue.Type.epic);
+        i1 = new Issue("i1", Issue.Status.inProgress, Issue.Type.epic);
+        i2 = new Issue("i2", Issue.Status.inProgress, Issue.Type.epic);
 
         try{
             System.out.println(i1.setTitle("title"));
