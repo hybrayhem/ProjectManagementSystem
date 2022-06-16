@@ -37,6 +37,8 @@ public class BoardTest {
         success = false;
         try{
             board.addIssueList(issueList);
+            board.addIssueList(issueList);
+            board.addIssueList(issueList);
             board.addIssue(s1, 0);
             board.addIssue(s2, 0);
             board.addIssue(s3, 0);
