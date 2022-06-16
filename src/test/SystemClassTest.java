@@ -35,7 +35,7 @@ public class SystemClassTest {
 
         try {
             System.out.println(system1.addProject(null));
-            system1.addUser(new ProjectManager(1, null, null, 1, null, null, null));
+            system1.addUser(new ProjectManager(1, null, null, 1, null, null, new Board()));
             System.out.println("Add User & Add Project : Success");
         } catch (Exception e) {
             System.err.println(e + "\n" + "Add User & Add Project : Failed");

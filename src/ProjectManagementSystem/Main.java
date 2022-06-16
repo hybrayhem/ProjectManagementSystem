@@ -1,6 +1,7 @@
 package ProjectManagementSystem;
 
 import java.io.FileNotFoundException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,7 +35,7 @@ class Main {
             opt = input.nextInt(); input.nextLine();
             switch (opt) {
                 case 1:
-                    register();
+                    register(system);
                     break;
                 case 2:
                     login();
@@ -50,7 +51,7 @@ class Main {
     }
 
 
-    public static void register(){
+    public static void register(SystemClass system){
 
         Scanner input = new Scanner(System.in);
         int opt;
@@ -67,7 +68,7 @@ class Main {
 
             switch (opt){
                 case 1:
-                    admins.add(new Admin(adminId++, username, name, pw ));
+                    admins.add(new Admin(adminId++, username, name, pw ,system));
                     break;
                 case 2:
                     managers.add(new ProjectManager(projectManagerId++, username, name, pw ));
@@ -115,7 +116,7 @@ class Main {
                     }
                 }
                 break;
-            case 2:
+             case 2:
                 for(ProjectManager manager : managers){
                     if(manager.getUsername().equals(username) && manager.getPassword().equals(pw)) {
                         projectManagerMenu(manager);
@@ -177,9 +178,110 @@ class Main {
             if (opt == 1) {
                 admin.createEmptyProject();
             } else if (opt == 2) {
-                admin.createIssue();
+                //String title, Enum status, Enum type
+                String title = null;
+                System.out.println("Enter the title of the issue");
+                title = input.nextLine();
+                String statussString = null; 
+                Issue.Status status = null;
+                System.out.println("Enter the status of the issue ( 'development','done','inprogress','inreview','verified'");
+                statussString = input.nextLine();
+                switch(statussString){
+                    case "development":
+                        status = Issue.Status.development;
+                        break;
+                    case "done":
+                        status = Issue.Status.done;
+                        break;
+                    case "inprogress":
+                        status = Issue.Status.inProgress;
+                        break;
+                    case "inreview":
+                        status = Issue.Status.inReview;
+                        break;
+                    case "verified":
+                        status = Issue.Status.verified;
+                        break;
+                    default:
+                        status = null;          
+                }
+                String typeString = null;
+                Issue.Type type = null;
+                System.out.println("Enter the type of the issue ( 'bug','story','epic','task'");
+                typeString = input.nextLine();
+                switch(typeString){
+                    case "bug":
+                        type = Issue.Type.bug;
+                        break;
+                    case "story":
+                        type = Issue.Type.story;
+                        break;
+                    case "epic":
+                        type = Issue.Type.epic;
+                        break;
+                    case "task":
+                        type = Issue.Type.task;
+                        break;
+                    default:
+                        type = null;
+                }
+                Project project = projectSelection(admin.getSystem(), input);
+                if(project == null){
+                    System.out.println("No project found, issue couldn't be created");
+                    continue;
+                }
+                Board board = boardSelection(project, input);
+                if(board == null){
+                    System.out.println("No board found, issue couldn't be created");
+                    continue;
+                }
+                IssueList issueList = issuListSelection(board, input);
+                if(issueList == null){
+                    System.out.println("No issue list found, issue couldn't be created");
+                    continue;
+                }
+                admin.createIssue(issueList, title, status, type);
             } else if (opt == 3) {
-                admin.createUser();
+                String userType = null;
+                int id = -1;
+                String username = null;
+                String fullname = null;
+                int contact = -1;
+                String teams = null;
+                System.out.println("Enter id:");
+                id = input.nextInt();
+                System.out.println("Enter username:");
+                username = input.nextLine();
+                System.out.println("Enter fullname:");
+                fullname = input.nextLine();
+                System.out.println("Enter contact:");
+                contact = input.nextInt();
+                System.out.println("Enter teams:");
+                teams = input.nextLine();
+                System.out.println("Enter the user type (guest,projectmember,projectmanager,boardmember)");
+                userType = input.nextLine();
+                switch(userType){
+                    case "projectmanager":
+                        Project project = projectSelection(admin.getSystem(), input);
+                        Board board = boardSelection(project, input);
+                        admin.createUser(userType, id, username, fullname, contact, teams, project, board);
+                        break;
+                    case "projectmember":
+                        Project project1 = projectSelection(admin.getSystem(), input);
+                        Board board1 = boardSelection(project1, input);
+                        admin.createUser(userType, id, username, fullname, contact, teams, project1, board1);
+                        break;
+                    case "boardmember":
+                        Project project2 = projectSelection(admin.getSystem(), input);
+                        Board board2 = boardSelection(project2, input);
+                        admin.createUser(userType, id, username, fullname, contact, teams,board2);
+                        break;
+                    case "guest":
+                        Project project3 = projectSelection(admin.getSystem(), input);
+                        Board board3 = boardSelection(project3, input);
+                        admin.createUser(userType, id, username, fullname, contact, teams,board3);
+                        break;
+                }
             } else if (opt == 4) {
                 System.out.println("Good Bye..");
                 return;
@@ -187,7 +289,7 @@ class Main {
         }while(opt!=4);
     }
 
-    public static void projectManagerMenu(ProjectManager projectManager){
+      public static void projectManagerMenu(ProjectManager projectManager){
 
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome, " + projectManager.getFullname() + ".\n" );
@@ -285,5 +387,57 @@ class Main {
                 return;
             }
         }while(opt!=4);
+    }
+    public static Project projectSelection(SystemClass system,Scanner input){
+        int selectedProject = -1;
+        if(system.getProjects() == null){
+            System.out.println("No project found");
+            return null;
+        }
+        for(int i = 0; i < system.getProjects().size();i++){
+            System.out.println(i+".project:"+system.getProjects().get(i));
+        }
+        System.out.println("Enter the project number:");
+        selectedProject = input.nextInt();
+        return system.getProjects().get(selectedProject);
+    }
+    public static Board boardSelection(Project project,Scanner input){
+        int selectedBoard = -1;
+        if(project.getBoards() == null){
+            System.out.println("No board found");
+            return null;
+        }
+        for(int i = 0; i < project.getBoards().size();i++){
+            System.out.println(i+".board:"+project.getBoards().get(i));
+        }
+        System.out.println("Enter the board number:");
+        selectedBoard = input.nextInt();
+        return project.getBoards().get(selectedBoard);
+    }
+    public static IssueList issuListSelection(Board board,Scanner input){
+        int selectedIssueList = -1;
+        if(board.getIssues() == null){
+            System.out.println("No issuelist found");
+            return null;
+        }
+        for(int i = 0; i < board.getIssues().size();i++){
+            System.out.println(i+".issue list:"+board.getIssues().get(i));
+        }
+        System.out.println("Enter the number of the issue list:");
+        selectedIssueList = input.nextInt();
+        return board.getIssues().get(selectedIssueList);
+    }
+    public static User userSelection(SystemClass system,Scanner input){
+        int selectedUser = -1;
+        if(system.getUsers() == null){
+            System.out.println("No issuelist found");
+            return null;
+        }
+        for(int i = 0; i < system.getUsers().size();i++){
+            System.out.println(i+".user:"+system.getUsers().get(i));
+        }
+        System.out.println("Enter the number of the user:");
+        selectedUser = input.nextInt();
+        return system.getUsers().get(selectedUser);
     }
 }

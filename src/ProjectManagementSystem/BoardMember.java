@@ -1,6 +1,7 @@
 package ProjectManagementSystem;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /** Users who are assigned to a specific board. */
@@ -16,10 +17,15 @@ public class BoardMember extends User implements Serializable {
     }
     public BoardMember(int id, String username, String fullname, int contact, String teams) {
         super(id, username, fullname, contact, teams);
+        assignedBoards = new ArrayList<>();
     }
 
     public BoardMember(int id, String username, String fullname, String password) {
         super(id, username, fullname, password);
+        assignedBoards = new ArrayList<>();
+    }
+    public void addBoard(Board board){
+        assignedBoards.add(board);
     }
 
     // Methods
