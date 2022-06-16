@@ -22,7 +22,7 @@ public class QuickSortTests {
         c.set(Calendar.DATE,05);
         c.set(Calendar.YEAR,2222);
         Date date1 = c.getTime();
-        Issue issue = new Issue(i,"eray"+i, Issue.Status.development, Issue.Type.task);
+        Issue issue = new Issue("eray"+i, Issue.Status.development, Issue.Type.task);
         issue.setDueDate(date1);
         issue.setDescription("description");
         issue.setPriority(Priority.High);
@@ -34,7 +34,7 @@ public class QuickSortTests {
         c.set(Calendar.DATE,05);
         c.set(Calendar.YEAR,2233);
         Date date2 = c.getTime();
-        issue = new Issue(i, "eray"+i, Issue.Status.development, Issue.Type.task);
+        issue = new Issue("eray"+i, Issue.Status.development, Issue.Type.task);
         issue.setDueDate(date2);
         issue.setDescription("description");
         issue.setPriority(Priority.High);
@@ -46,7 +46,7 @@ public class QuickSortTests {
         c.set(Calendar.DATE,03);
         c.set(Calendar.YEAR,2244);
         Date date3 = c.getTime();
-        issue = new Issue(i, "eray"+i, Issue.Status.development, Issue.Type.task);
+        issue = new Issue("eray"+i, Issue.Status.development, Issue.Type.task);
         issue.setDueDate(date3);
         issue.setDescription("description");
         issue.setPriority(Priority.High);
@@ -58,7 +58,7 @@ public class QuickSortTests {
         c.set(Calendar.DATE,05);
         c.set(Calendar.YEAR,2255);
         Date date4 = c.getTime();
-        issue = new Issue(i, "eray"+i, Issue.Status.development, Issue.Type.task);
+        issue = new Issue("eray"+i, Issue.Status.development, Issue.Type.task);
         issue.setDueDate(date4);
         issue.setDescription("description");
         issue.setPriority(Priority.High);
@@ -70,7 +70,7 @@ public class QuickSortTests {
         c.set(Calendar.DATE,27);
         c.set(Calendar.YEAR,2266);
         Date date5 = c.getTime();
-        issue = new Issue(i, "eray"+i, Issue.Status.development, Issue.Type.task);
+        issue = new Issue("eray"+i, Issue.Status.development, Issue.Type.task);
         issue.setDueDate(date5);
         issue.setDescription("description");
         issue.setPriority(Priority.High);
@@ -90,7 +90,7 @@ public class QuickSortTests {
         }
         System.out.println("What happens if duplicate dates exist:");
         for(int j = 0; j < 3;j++){
-            issue = new Issue(i, "eray"+i, Issue.Status.development, Issue.Type.task);
+            issue = new Issue("eray"+i, Issue.Status.development, Issue.Type.task);
             issue.setDueDate(date5);
             issue.setDescription("description");
             issue.setPriority(Priority.High);
