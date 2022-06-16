@@ -1,7 +1,5 @@
 package ProjectManagementSystem;
-
 import java.io.FileNotFoundException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -256,7 +254,7 @@ class Main {
                     System.out.println("No board found, issue couldn't be created");
                     continue;
                 }
-                IssueList issueList = issuListSelection(board, input);
+                IssueList issueList = issueListSelection(board, input);
                 if(issueList == null){
                     System.out.println("No issue list found, issue couldn't be created");
                     continue;
@@ -374,7 +372,7 @@ class Main {
                       System.out.println("No board found, issue couldn't be created");
                       continue;
                   }
-                  IssueList issueList = issuListSelection(board, input);
+                  IssueList issueList = issueListSelection(board, input);
                   if(issueList == null){
                       System.out.println("No issue list found, issue couldn't be created");
                       continue;
@@ -394,21 +392,55 @@ class Main {
         int opt;
 
         do {
-            System.out.println("1- Assign User");
-            System.out.println("4- Logout");
+            System.out.println("1- list issues by due dates");
+            System.out.println("2- list issues by create times");
 
             opt = input.nextInt();  input.nextLine();
 
-//            if (opt == 1) {
-//                projectManager.createEmptyProject();
-//            } else if (opt == 2) {
-//                admin.createIssue();
-//            } else if (opt == 3) {
-//                admin.createUser();
-//            } else if (opt == 4) {
-//                System.out.println("Good Bye..");
-//                return;
-//            }
+            if (opt == 1) {
+                int selectedBoard = -1;
+                System.out.println("Select board");
+                for(int i = 0; i < boardMember.getBoards().size();i++){
+                    System.out.println(i+".board:"+boardMember.getBoards().get(i));
+                }
+                selectedBoard = input.nextInt();
+                if(selectedBoard < 0 || selectedBoard >= boardMember.getBoards().size()){
+                    System.out.println("Board doesn't exist");
+                }else{
+                    Board board = boardMember.getBoards().get(selectedBoard);
+                    IssueList issueList = issueListSelection(board, input);
+                    if(issueList !=null){
+                        ArrayList<Issue> sortedIssues = QuickSort.sortByDueDate(issueList);
+                        for(int i = 0; i < sortedIssues.size();i++){
+                            System.out.println(sortedIssues.get(i));
+                        }
+                    }
+                }
+            } else if (opt == 2) {
+                int selectedBoard = -1;
+                System.out.println("Select board");
+                for(int i = 0; i < boardMember.getBoards().size();i++){
+                    System.out.println(i+".board:"+boardMember.getBoards().get(i));
+                }
+                selectedBoard = input.nextInt();
+                if(selectedBoard < 0 || selectedBoard >= boardMember.getBoards().size()){
+                    System.out.println("Board doesn't exist");
+                }else{
+                    Board board = boardMember.getBoards().get(selectedBoard);
+                    IssueList issueList = issueListSelection(board, input);
+                    if(issueList !=null){
+                        ArrayList<Issue> sortedIssues = QuickSort.sortByCreateDate(issueList);
+                        for(int i = 0; i < sortedIssues.size();i++){
+                            System.out.println(sortedIssues.get(i));
+                        }
+                    }
+                }
+            } else if (opt == 3) {
+
+            } else if (opt == 4) {
+                System.out.println("Good Bye..");
+                return;
+            }
         }while(opt!=4);
     }
 
@@ -514,7 +546,7 @@ class Main {
         }
         return project.getBoards().get(selectedBoard);
     }
-    public static IssueList issuListSelection(Board board,Scanner input){
+    public static IssueList issueListSelection(Board board,Scanner input){
         int selectedIssueList = -1;
         if(board.getIssues() == null){
             System.out.println("No issuelist found");

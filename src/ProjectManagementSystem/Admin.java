@@ -1,6 +1,5 @@
 package ProjectManagementSystem;
 import java.util.List;
-
 import BST.BinarySearchTree;
 
 public class Admin extends ProjectManager {

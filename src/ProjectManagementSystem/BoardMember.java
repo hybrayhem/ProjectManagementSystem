@@ -31,6 +31,9 @@ public class BoardMember extends User implements Serializable {
     public void addBoard(Board board){
         assignedBoards.add(board);
     }
+    public List<Board> getBoards(){
+        return assignedBoards;
+    }
 
     // Methods
     @Override
