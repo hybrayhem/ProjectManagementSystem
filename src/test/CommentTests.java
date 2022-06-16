@@ -5,7 +5,7 @@ import ProjectManagementSystem.Comment;
 
 public class CommentTests {
     CommentTests(){
-        Comment com = new Comment(new BoardMember(12, "bb", "bb", 1, "a"), "bla bla");
+        Comment com = new Comment(new BoardMember( "bb", "bb", 1, "a"), "bla bla");
 
         try {
             System.out.println(com.getId());
@@ -44,7 +44,7 @@ public class CommentTests {
         }
 
         try {
-            System.out.println(com.setOwner(new BoardMember(12, "bb", "bb", 1, "a")));
+            System.out.println(com.setOwner(new BoardMember( "bb", "bb", 1, "a")));
             System.out.println(com.setOwner(null));
             System.out.println("Comments setOwner: Success");
         } catch (Exception e) {

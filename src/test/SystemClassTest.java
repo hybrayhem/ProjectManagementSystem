@@ -10,7 +10,7 @@ public class SystemClassTest {
 
         try{
             system1 = new SystemClass();
-            system2 = new SystemClass(new Admin(1, null, null, 1, null, null, null, null));
+            system2 = new SystemClass(new Admin( null, null, 1, null, null, null, null));
             System.out.println("Project Object creation : Success");
         }
         catch (Exception e){
@@ -35,7 +35,7 @@ public class SystemClassTest {
 
         try {
             System.out.println(system1.addProject(null));
-            system1.addUser(new ProjectManager(1, null, null, 1, null, null, new Board()));
+            system1.addUser(new ProjectManager( null, null, 1, null, null, new Board()));
             System.out.println("Add User & Add Project : Success");
         } catch (Exception e) {
             System.err.println(e + "\n" + "Add User & Add Project : Failed");

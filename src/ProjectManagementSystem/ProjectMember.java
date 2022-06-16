@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ProjectMember extends BoardMember implements Serializable{
-    protected Project project;
-    public ProjectMember(int id, String username,String fullname, int contact, String teams,
+    private Project project;
+    public ProjectMember( String username,String fullname, int contact, String teams,
                          Project project, List<Board> assignedBoards){
-        super(id,username,fullname,contact,teams,assignedBoards);
+        super(username,fullname,contact,teams,assignedBoards);
         this.project = project;
     }
-    public ProjectMember(int id, String username, String fullname, String password) {
-        super(id, username, fullname, password);
+    public ProjectMember( String username, String fullname, String password) {
+        super( username, fullname, password);
     }
-    public ProjectMember(int id, String username,String fullname, int contact, 
+    public ProjectMember( String username,String fullname, int contact, 
                          String teams, Project project, Board assignedBoard){
-        super(id, username, fullname, contact, teams);   
+        super( username, fullname, contact, teams);   
         this.project = project;  
         addBoard(assignedBoard);        
     }
@@ -27,6 +27,11 @@ public class ProjectMember extends BoardMember implements Serializable{
             System.out.println(project.getBacklog().toString());
         }
     }
+    public void setProject(Project project){
+        project = this.project;
+    }
+    public Project getAssignedProject(){return project;}
+
     public void viewProject(){
         if(project == null){
             System.out.println("There is no project to view");

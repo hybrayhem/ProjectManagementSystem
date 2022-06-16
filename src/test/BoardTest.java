@@ -11,9 +11,9 @@ public class BoardTest {
         Board board = new Board();
 
         // Test members
-        BoardMember m1 = new BoardMember(0, "m1", "Member One", 505, "Software");
-        BoardMember m2 = new BoardMember(1, "m2", "Member Two", 505, "Electronics");
-        BoardMember m3 = new BoardMember(2, "m3", "Member Three", 505, "Mechanics");
+        BoardMember m1 = new BoardMember( "m1", "Member One", 505, "Software");
+        BoardMember m2 = new BoardMember( "m2", "Member Two", 505, "Electronics");
+        BoardMember m3 = new BoardMember( "m3", "Member Three", 505, "Mechanics");
 
         boolean success = false;
         try{

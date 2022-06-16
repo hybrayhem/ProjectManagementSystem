@@ -11,9 +11,9 @@ public class AdminTest {
         SystemClass system = new SystemClass();
         IssueList issueList = new IssueList("title");
         IssueList nullIssueList = null;
-        Admin admin_no_system = new Admin(1, "username", "fullname", 1, 
+        Admin admin_no_system = new Admin( "username", "fullname", 1, 
                                         "teams", null, null, null);
-        Admin admin = new Admin(1, "username", "fullname", 1, "teams", null,
+        Admin admin = new Admin( "username", "fullname", 1, "teams", null,
                      null,system);
         system.setAdmin(admin);
         try{
@@ -55,7 +55,7 @@ public class AdminTest {
             System.err.println("Project couldn't be created!");
         }
         try{
-            admin.createUser("projectmanager", 1, "username", "fullname", 1, "teams", null, null);
+            admin.createUser("projectmanager", "username", "fullname","sd");
             System.out.println("User created succesfully");
         }catch(Exception e){
             System.err.println("User couldn't be created!");
