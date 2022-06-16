@@ -91,9 +91,13 @@ public class IssueList implements Serializable {
         for (Issue issue : issues) {
             issuesSb.append(issue.toString() + "\n");
         }
-        return String.format("\n\n%-3s %-20s %-12s %-8s %-11s %-20s %-20s", "ID", "Title", "Status", "Priority", "Due Date", "Description", "Comments") + "\n" +
+        return String.format("\n/%s %s %s %s %s/", "*".repeat(35), " ".repeat((14 - getTitle().length()) / 2),
+                getTitle(),
+                " ".repeat((14 - getTitle().length()) / 2), "*".repeat(35)) +
+                String.format("\n%-3s %-20s %-12s %-8s %-11s %-20s %-20s", "ID", "Title", "Status", "Priority", "Due Date", "Description", "Comments") + "\n" +
                 "-".repeat(88) + "\n" +
-                issuesSb + "\n";
+                issuesSb +
+                "*".repeat(88);
     }
 
     // Overload for external Issue Lists
@@ -103,9 +107,9 @@ public class IssueList implements Serializable {
             issuesSb.append(issue.toString() + "\n");
         }
 
-        return String.format("\n%s %s %s %s %s\n", "*".repeat(36), " ".repeat((14 - getTitle().length())/2),
-                             getTitle(),
-                             " ".repeat((14 - getTitle().length())/2), "*".repeat(36)) +
+        return String.format("\n/%s %s %s %s %s/n", "*".repeat(35), " ".repeat((14 - getTitle().length()) / 2),
+                getTitle(),
+                " ".repeat((14 - getTitle().length()) / 2), "*".repeat(35)) +
                 String.format("\n%-3s %-20s %-12s %-8s %-11s %-20s %-20s", "ID", "Title", "Status", "Priority", "Due Date", "Description", "Comments") + "\n" +
                 "-".repeat(88) + "\n" +
                 issuesSb +

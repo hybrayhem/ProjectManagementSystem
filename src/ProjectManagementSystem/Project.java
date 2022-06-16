@@ -3,6 +3,7 @@ package ProjectManagementSystem;
 import BST.BinarySearchTree;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Project implements Serializable{
@@ -22,6 +23,30 @@ public class Project implements Serializable{
         this.type = type;
         this.projectManager = lead;
         this.backlog = backlog;
+        users = members;
+        board = boards;
+    }
+    public Project(int id, String key, String name, String type, ProjectManager lead){
+        this.id = id;
+        this.key = key;
+        this.name = name;
+        this.type = type;
+        this.projectManager = lead;
+        users = new BinarySearchTree<User>();
+        board = new ArrayList<>();
+    }
+    public Project(int id, String key, String name, String type){
+        this.id = id;
+        this.key = key;
+        this.name = name;
+        this.type = type;
+        users = new BinarySearchTree<User>();
+        board = new ArrayList<>();
+    }
+    public Project(ProjectManager projectManager){
+        this.projectManager = projectManager;
+        users = new BinarySearchTree<User>();
+        board = new ArrayList<>();
     }
 
     public Project() {
