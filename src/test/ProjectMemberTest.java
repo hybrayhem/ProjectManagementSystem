@@ -5,6 +5,7 @@ import java.util.Stack;
 import ProjectManagementSystem.Backlog;
 import ProjectManagementSystem.Project;
 import ProjectManagementSystem.Issue;
+import ProjectManagementSystem.Board;
 public class ProjectMemberTest {
     ProjectMemberTest(){
         Calendar c = Calendar.getInstance();
@@ -38,12 +39,12 @@ public class ProjectMemberTest {
         Project project = new Project(1, "key", "name", "type", null, null, 
                          null, backlog);
         ProjectMember projectMember = new ProjectMember(1, "username", "fullname",
-                                      1, "teams",project,null);
+                                      1, "teams",project,new Board());
         projectMember.viewBacklog();
         ProjectMember projectMember2 = new ProjectMember(1, "username", "fullname",
-                                        1, "teams", project2, null);
+                                        1, "teams", project2, new Board());
         ProjectMember projectMember3 = new ProjectMember(1, "username", "fullname", 
-                                       1, "teams", project3, null);
+                                       1, "teams", project3, new Board());
         try{
             projectMember2.viewBacklog();
         }catch(Exception e ){

@@ -15,6 +15,17 @@ public class Admin extends ProjectManager {
         super(id, username, fullname, password);
 
     }
+    public Admin(int id, String username, String fullname, String password,SystemClass system){
+        super(id, username, fullname, password);
+        this.system = system;
+
+    }
+    public SystemClass getSystem(){
+        return system;
+    }
+    public void setSystem(SystemClass system){
+        this.system = system;
+    }
 
     public void createProject(int id, String key, String name, String type, ProjectManager lead, 
                               BinarySearchTree<User> members, List<Board> boards, Backlog backlog){
@@ -29,7 +40,7 @@ public class Admin extends ProjectManager {
     public void createEmptyProject(){
         system.projects.add(new Project());
     }
-    
+
     public void createIssue(IssueList issueList, String title, Enum status, Enum type )
     {
         Issue issue = new Issue(title, (Issue.Status) status, (Issue.Type) type);
@@ -43,23 +54,29 @@ public class Admin extends ProjectManager {
 
 
 
-    public void createUser(int id,String username, String fullname, int contact, String teams){
-        system.addUser(new BoardMember(id,username,fullname,contact,teams)); 
+    public void createUser(String usertype,int id,String username, String fullname, int contact, String teams,Board board){
+        switch(usertype){
+            case "boardmember":
+                BoardMember boardMember = new BoardMember(id,username,fullname,contact,teams);
+                boardMember.addBoard(board);
+                system.addUser(boardMember); 
+                break;
+            case "guest":
+                system.addUser(new Guest(id,username,fullname,contact,teams,board));       
+        }   
     }
     public void createUser(String usertype,int id,String username, String fullname, int contact, 
-                           String teams,Project project, List<Board> assignedBoards){
+                           String teams,Project project, Board assignedBoard){
         switch(usertype){
             case "projectmember":
-               system.addUser(new ProjectMember(id,username,fullname,contact,teams,project,assignedBoards));
+               system.addUser(new ProjectMember(id,username,fullname,contact,teams,project,assignedBoard));
                break;
             case "projectmanager":
-               system.addUser(new ProjectManager(id,username,fullname,contact,teams,project,assignedBoards));
+               system.addUser(new ProjectManager(id,username,fullname,contact,teams,project,assignedBoard));
                break;
             default:
                System.out.println("User couldn't be created!");
         }
     }
-    public void createUser(int id,String username, String fullname, int contact, String teams,Board invitedBoard){
-        system.addUser(new Guest(id,username,fullname,contact,teams,invitedBoard));
-    }
+
 }

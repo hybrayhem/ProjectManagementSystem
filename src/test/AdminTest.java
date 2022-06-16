@@ -61,13 +61,13 @@ public class AdminTest {
             System.err.println("User couldn't be created!");
         }
         try{
-            admin.createUser(1, "username", "fullname", 1, "teams");
+           // admin.createUser(1, "username", "fullname", 1, "teams");
             System.out.println("User created succesfully");
         }catch(Exception e){
             System.err.println("User couldn't be created!");
         }
         try{
-            admin.createUser(1, "username", "fullname", 1, "teams", null);
+         //   admin.createUser(1, "username", "fullname", 1, "teams", null);
             System.out.println("User created succesfully");
         }catch(Exception e){
             System.err.println("User couldn't be created!");
