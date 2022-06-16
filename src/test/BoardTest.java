@@ -50,6 +50,9 @@ public class BoardTest {
         System.out.print("Issue titles: ");
         System.out.print(issueList.getIssues().get(0).getTitle() + ", ");
         System.out.print(issueList.getIssues().get(1).getTitle() + ", ");
-        System.out.println(issueList.getIssues().get(2).getTitle() + ", ");
+        System.out.println(issueList.getIssues().get(2).getTitle() + "\n");
+
+        System.out.println("Print board.");
+        System.out.println(board.toString());
     }
 }

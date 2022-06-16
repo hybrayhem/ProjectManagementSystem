@@ -82,14 +82,8 @@ public class Backlog implements Serializable {
      */
     @Override
     public String toString() {
-        StringBuilder issuesSb = new StringBuilder();
-        for(Issue issue : getIssues()) {
-            issuesSb.append(issue.toString() + "\n");
-        }
-        return "\n" + "*".repeat(38) + "  Backlog  " + "*".repeat(39) + "\n" +
-                String.format("%-3s %-20s %-12s %-8s %-11s %-20s %-20s", "ID", "Title", "Status", "Priority", "Due Date", "Description", "Comments") + "\n" +
-                 issuesSb +
-                "*".repeat(88) + "\n";
+        IssueList issueList = new IssueList("Backlog"); // to call its toString method
+        return issueList.toString(getIssues());
     }
 
 
