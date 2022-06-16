@@ -173,6 +173,7 @@ class Main {
     public static void adminMenu(Admin admin){
 
         Scanner input = new Scanner(System.in);
+
         System.out.println("Welcome, " + admin.getFullname() + ".\n" );
         int opt;
 
@@ -355,22 +356,18 @@ class Main {
         int opt;
 
         do {
-            System.out.println("1- Assign User");
-            System.out.println("4- Logout");
+            System.out.println("1- View board");
+            System.out.println("2- Logout");
 
             opt = input.nextInt();  input.nextLine();
 
-//            if (opt == 1) {
-//                projectManager.createEmptyProject();
-//            } else if (opt == 2) {
-//                admin.createIssue();
-//            } else if (opt == 3) {
-//                admin.createUser();
-//            } else if (opt == 4) {
-//                System.out.println("Good Bye..");
-//                return;
-//            }
-        }while(opt!=4);
+            if (opt == 1) {
+                guest.viewBoard();
+            } else if (opt == 2) {
+                System.out.println("Good Bye..");
+                return;
+            }
+        }while(opt!=2);
     }
 
     public static void memberMenu(ProjectMember projectMember){
@@ -380,22 +377,45 @@ class Main {
         int opt;
 
         do {
-            System.out.println("1- Assign User");
-            System.out.println("4- Logout");
+            System.out.println("1- View board");
+            System.out.println("2- View backlog");
+            System.out.println("3- View project");
+            System.out.println("4- Change issue title");
+            System.out.println("5- Edit issue title");
+            System.out.println("6- Change issue status");
+            System.out.println("7- Add issue comment");
+            System.out.println("8- Edit issue comment");
+            System.out.println("9- Remove issue comment");
+            System.out.println("10- Logout");
 
             opt = input.nextInt();  input.nextLine();
 
-//            if (opt == 1) {
-//                projectManager.createEmptyProject();
-//            } else if (opt == 2) {
-//                admin.createIssue();
-//            } else if (opt == 3) {
-//                admin.createUser();
-//            } else if (opt == 4) {
-//                System.out.println("Good Bye..");
-//                return;
-//            }
-        }while(opt!=4);
+            if (opt == 1) {
+                projectMember.viewBoard(null);
+            } else if (opt == 2) {
+                projectMember.viewBacklog();
+            } else if (opt == 3) {
+                projectMember.viewProject();
+            }else if (opt == 4) {
+                projectMember.editIssueTitle(null, null);
+            } else if (opt == 5) {
+                projectMember.editIssueTitle(null, null);
+            }else if (opt == 6) {
+                projectMember.changeIssueStatus(null, null);
+            } else if (opt == 7) {
+                projectMember.addIssueComment(null, null);
+            }
+            else if (opt == 8) {
+                projectMember.editIssueTitle(null, null);
+            }
+            else if (opt == 9) {
+                projectMember.removeIssueComment(null);
+            }
+            else if (opt == 10) {
+                System.out.println("Good Bye..");
+                return;
+            }
+        }while(opt!=10);
     }
     public static Project projectSelection(SystemClass system,Scanner input){
         int selectedProject = -1;
