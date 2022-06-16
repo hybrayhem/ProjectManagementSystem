@@ -43,16 +43,7 @@ public class Admin extends ProjectManager {
         return project;
     }
 
-    public void createIssue(IssueList issueList, String title, Enum status, Enum type )
-    {
-        Issue issue = new Issue(title, (Issue.Status) status, (Issue.Type) type);
-        if(issueList == null){
-            System.out.println("Issue couldn't be added, try to add somewhere else.");
-        }
-        else{
-            issueList.addIssue(issue);
-        }
-    }
+
 
 
 

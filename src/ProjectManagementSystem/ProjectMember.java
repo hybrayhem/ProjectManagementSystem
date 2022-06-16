@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ProjectMember extends BoardMember implements Serializable{
-    protected Project project;
+    private Project project;
     public ProjectMember( String username,String fullname, int contact, String teams,
                          Project project, List<Board> assignedBoards){
         super(username,fullname,contact,teams,assignedBoards);
@@ -30,6 +30,8 @@ public class ProjectMember extends BoardMember implements Serializable{
     public void setProject(Project project){
         project = this.project;
     }
+    public Project getAssignedProject(){return project;}
+
     public void viewProject(){
         if(project == null){
             System.out.println("There is no project to view");

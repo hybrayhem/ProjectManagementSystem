@@ -15,6 +15,18 @@ public class ProjectManager extends ProjectMember implements Serializable{
     public ProjectManager( String username, String fullname, String password){
         super( username, fullname, password);
     }
+
+    public void createIssue(IssueList issueList, String title, Enum status, Enum type )
+    {
+        Issue issue = new Issue(title, (Issue.Status) status, (Issue.Type) type);
+        if(issueList == null){
+            System.out.println("Issue couldn't be added, try to add somewhere else.");
+        }
+        else{
+            issueList.addIssue(issue);
+        }
+    }
+
     public void assignUser(Issue issue,User user){
         if(issue == null){
             System.out.println("User cannot be assigned because the issue doesn't exist.");
