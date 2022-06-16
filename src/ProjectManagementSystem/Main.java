@@ -162,7 +162,6 @@ class Main {
     }
 
     public static void adminMenu(Admin admin){
-
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome, " + admin.getFullname() + ".\n" );
         int opt;
@@ -291,27 +290,85 @@ class Main {
 
       public static void projectManagerMenu(ProjectManager projectManager){
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Welcome, " + projectManager.getFullname() + ".\n" );
-        int opt;
+          Scanner input = new Scanner(System.in);
+          System.out.println("Welcome, " + projectManager.getFullname() + ".\n" );
+          int opt;
 
-        do {
-            System.out.println("1- Assign User");
-            System.out.println("4- Logout");
+          do {
+              System.out.println("1- Create Issue");
+              System.out.println("3- Logout");
 
-            opt = input.nextInt();  input.nextLine();
+              opt = input.nextInt();  input.nextLine();
 
-            if (opt == 1) {
-                projectManager.createEmptyProject();
-            } else if (opt == 2) {
-                admin.createIssue();
-            } else if (opt == 3) {
-                admin.createUser();
-            } else if (opt == 4) {
-                System.out.println("Good Bye..");
-                return;
-            }
-        }while(opt!=4);
+              if (opt == 1) {
+                  //String title, Enum status, Enum type
+                  String title = null;
+                  System.out.println("Enter the title of the issue");
+                  title = input.nextLine();
+                  String statussString = null;
+                  Issue.Status status = null;
+                  System.out.println("Enter the status of the issue ( 'development','done','inprogress','inreview','verified'");
+                  statussString = input.nextLine();
+                  switch(statussString){
+                      case "development":
+                          status = Issue.Status.development;
+                          break;
+                      case "done":
+                          status = Issue.Status.done;
+                          break;
+                      case "inprogress":
+                          status = Issue.Status.inProgress;
+                          break;
+                      case "inreview":
+                          status = Issue.Status.inReview;
+                          break;
+                      case "verified":
+                          status = Issue.Status.verified;
+                          break;
+                      default:
+                          status = null;
+                  }
+                  String typeString = null;
+                  Issue.Type type = null;
+                  System.out.println("Enter the type of the issue ( 'bug','story','epic','task'");
+                  typeString = input.nextLine();
+                  switch(typeString){
+                      case "bug":
+                          type = Issue.Type.bug;
+                          break;
+                      case "story":
+                          type = Issue.Type.story;
+                          break;
+                      case "epic":
+                          type = Issue.Type.epic;
+                          break;
+                      case "task":
+                          type = Issue.Type.task;
+                          break;
+                      default:
+                          type = null;
+                  }
+                  Project project = projectManager.getAssignedProject();
+                  if(project == null){
+                      System.out.println("No project found, issue couldn't be created");
+                      continue;
+                  }
+                  Board board = boardSelection(project, input);
+                  if(board == null){
+                      System.out.println("No board found, issue couldn't be created");
+                      continue;
+                  }
+                  IssueList issueList = issuListSelection(board, input);
+                  if(issueList == null){
+                      System.out.println("No issue list found, issue couldn't be created");
+                      continue;
+                  }
+                  projectManager.createIssue(issueList, title, status, type);
+              } else if (opt == 3) {
+                  System.out.println("Good Bye..");
+                  return;
+              }
+          }while(opt<1||opt>3);
     }
 
     public static void boardMemberMenu(BoardMember boardMember){
