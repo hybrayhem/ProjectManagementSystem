@@ -297,7 +297,7 @@ class Main {
         }while(opt!=4);
     }
 
-      public static void projectManagerMenu(ProjectManager projectManager){
+    public static void projectManagerMenu(ProjectManager projectManager){
 
           Scanner input = new Scanner(System.in);
           System.out.println("Welcome, " + projectManager.getFullname() + ".\n" );
@@ -378,17 +378,6 @@ class Main {
                   return;
               }
           }while(opt<1||opt>3);
-           if (opt == 1) {
-                projectManager.createEmptyProject();
-            } else if (opt == 2) {
-                admin.createIssue();
-            } else if (opt == 3) {
-                admin.createUser();
-            } else if (opt == 4) {
-                System.out.println("Good Bye..");
-                return;
-           }
-        }while(opt!=4);
     }
 
     public static void boardMemberMenu(BoardMember boardMember){
