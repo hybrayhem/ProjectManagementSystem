@@ -57,34 +57,43 @@ class Main {
         int opt;
 
         do {
-            System.out.println("Choose Account Type:\n1)Admin"+ "2)Project Manager\n3)Board Member\n4)Project Member\n5)Guest\n6)Exit");
+            System.out.println("Choose Account Type:\n1)Admin\n"+ "2)Project Manager\n3)Board Member\n4)Project Member\n5)Guest\n6)Exit");
             opt = input.nextInt(); input.nextLine();
-            System.out.println("Enter full name:");
-            String name = input.nextLine();
-            System.out.println("Enter username:");
-            String username = input.nextLine();
-            System.out.println("Enter password:");
-            String pw = input.nextLine();
 
+            String name=null, username = null, pw=null;
+
+            if (opt != 6) {
+                System.out.println("Enter full name:");
+                name = input.nextLine();
+                System.out.println("Enter username:");
+                username = input.nextLine();
+                System.out.println("Enter password:");
+                pw = input.nextLine();
+            }
             switch (opt){
                 case 1:
                     admins.add(new Admin(adminId++, username, name, pw ,system));
+                    opt=6;
                     break;
                 case 2:
                     managers.add(new ProjectManager(projectManagerId++, username, name, pw ));
-
+                    opt=6;
                     break;
                 case 3:
                     boardMembers.add(new BoardMember(boardMemberId++, username, name, pw ));
+                    opt=6;
                     break;
                 case 4:
                     members.add(new ProjectMember(projectMemberId++, username, name, pw ));
+                    opt=6;
                     break;
                 case 5:
                     guests.add(new Guest(guestsId++, username, name, pw ));
+                    opt=6;
                     break;
                 case 6:
                     System.out.println("Redirecting to main menu.");
+                    opt=6;
                     break;
                 default:
                     System.out.println("Invalid selection..");
@@ -99,7 +108,7 @@ class Main {
         Scanner input = new Scanner(System.in);
         int opt;
         boolean loggedIn = false;
-        System.out.println("Choose Account Type:\n1)Admin"+ "2)Project Manager\n3)Board Member\n4)Project Member\n5)Guest\n6)Exit");
+        System.out.println("Choose Account Type:\n1)Admin\n"+ "2)Project Manager\n3)Board Member\n4)Project Member\n5)Guest\n6)Exit");
         opt = input.nextInt(); input.nextLine();
         System.out.println("Your username: ");
         String username = input.nextLine();
@@ -301,16 +310,16 @@ class Main {
 
             opt = input.nextInt();  input.nextLine();
 
-            if (opt == 1) {
-                projectManager.createEmptyProject();
-            } else if (opt == 2) {
-                admin.createIssue();
-            } else if (opt == 3) {
-                admin.createUser();
-            } else if (opt == 4) {
-                System.out.println("Good Bye..");
-                return;
-            }
+//            if (opt == 1) {
+//                projectManager.createEmptyProject();
+//            } else if (opt == 2) {
+//                admin.createIssue();
+//            } else if (opt == 3) {
+//                admin.createUser();
+//            } else if (opt == 4) {
+//                System.out.println("Good Bye..");
+//                return;
+//            }
         }while(opt!=4);
     }
 
@@ -326,16 +335,16 @@ class Main {
 
             opt = input.nextInt();  input.nextLine();
 
-            if (opt == 1) {
-                projectManager.createEmptyProject();
-            } else if (opt == 2) {
-                admin.createIssue();
-            } else if (opt == 3) {
-                admin.createUser();
-            } else if (opt == 4) {
-                System.out.println("Good Bye..");
-                return;
-            }
+//            if (opt == 1) {
+//                projectManager.createEmptyProject();
+//            } else if (opt == 2) {
+//                admin.createIssue();
+//            } else if (opt == 3) {
+//                admin.createUser();
+//            } else if (opt == 4) {
+//                System.out.println("Good Bye..");
+//                return;
+//            }
         }while(opt!=4);
     }
 
@@ -351,16 +360,16 @@ class Main {
 
             opt = input.nextInt();  input.nextLine();
 
-            if (opt == 1) {
-                projectManager.createEmptyProject();
-            } else if (opt == 2) {
-                admin.createIssue();
-            } else if (opt == 3) {
-                admin.createUser();
-            } else if (opt == 4) {
-                System.out.println("Good Bye..");
-                return;
-            }
+//            if (opt == 1) {
+//                projectManager.createEmptyProject();
+//            } else if (opt == 2) {
+//                admin.createIssue();
+//            } else if (opt == 3) {
+//                admin.createUser();
+//            } else if (opt == 4) {
+//                System.out.println("Good Bye..");
+//                return;
+//            }
         }while(opt!=4);
     }
 
@@ -376,16 +385,16 @@ class Main {
 
             opt = input.nextInt();  input.nextLine();
 
-            if (opt == 1) {
-                projectManager.createEmptyProject();
-            } else if (opt == 2) {
-                admin.createIssue();
-            } else if (opt == 3) {
-                admin.createUser();
-            } else if (opt == 4) {
-                System.out.println("Good Bye..");
-                return;
-            }
+//            if (opt == 1) {
+//                projectManager.createEmptyProject();
+//            } else if (opt == 2) {
+//                admin.createIssue();
+//            } else if (opt == 3) {
+//                admin.createUser();
+//            } else if (opt == 4) {
+//                System.out.println("Good Bye..");
+//                return;
+//            }
         }while(opt!=4);
     }
     public static Project projectSelection(SystemClass system,Scanner input){
