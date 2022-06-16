@@ -11,17 +11,21 @@ public class BoardMember extends User implements Serializable {
     private List<Board> assignedBoards;
 
     // Constructors
-    public BoardMember(int id, String username, String fullname, int contact, String teams, List<Board> assignedBoards) {
-        super(id, username, fullname, contact, teams);
+    public BoardMember(String username, String fullname, int contact, String teams, List<Board> assignedBoards) {
+        super( username, fullname, contact, teams);
         this.assignedBoards = assignedBoards;
     }
-    public BoardMember(int id, String username, String fullname, int contact, String teams) {
-        super(id, username, fullname, contact, teams);
+    public BoardMember(String username, String fullname, int contact, String teams) {
+        super(username, fullname, contact, teams);
+        assignedBoards = new ArrayList<>();
+    }
+    public BoardMember(String username, String fullname, int contact, String teams,Board board) {
+        super( username, fullname, contact, teams);
         assignedBoards = new ArrayList<>();
     }
 
-    public BoardMember(int id, String username, String fullname, String password) {
-        super(id, username, fullname, password);
+    public BoardMember( String username, String fullname, String password) {
+        super( username, fullname, password);
         assignedBoards = new ArrayList<>();
     }
     public void addBoard(Board board){

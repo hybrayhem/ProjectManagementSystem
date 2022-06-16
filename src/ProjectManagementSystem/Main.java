@@ -72,23 +72,23 @@ class Main {
             }
             switch (opt){
                 case 1:
-                    admins.add(new Admin(adminId++, username, name, pw ,system));
+                    admins.add(new Admin(username, name, pw ,system));
                     opt=6;
                     break;
                 case 2:
-                    managers.add(new ProjectManager(projectManagerId++, username, name, pw ));
+                    managers.add(new ProjectManager(username, name, pw ));
                     opt=6;
                     break;
                 case 3:
-                    boardMembers.add(new BoardMember(boardMemberId++, username, name, pw ));
+                    boardMembers.add(new BoardMember(username, name, pw ));
                     opt=6;
                     break;
                 case 4:
-                    members.add(new ProjectMember(projectMemberId++, username, name, pw ));
+                    members.add(new ProjectMember(username, name, pw ));
                     opt=6;
                     break;
                 case 5:
-                    guests.add(new Guest(guestsId++, username, name, pw ));
+                    guests.add(new Guest( username, name, pw ));
                     opt=6;
                     break;
                 case 6:
@@ -184,7 +184,19 @@ class Main {
             opt = input.nextInt();  input.nextLine();
 
             if (opt == 1) {
-                admin.createEmptyProject();
+                int selectedmanager = -1;
+                System.out.println("Select project manager to assign to the project");
+                for(int i = 0 ; i < managers.size();i++){
+                    System.out.println(i+".manager:"+managers.get(i));
+                }
+                selectedmanager = input.nextInt();
+                if(selectedmanager >= 0 && selectedmanager <= managers.size()){
+                    Project project = admin.createEmptyProject(managers.get(selectedmanager));
+                    managers.get(selectedmanager).setProject(project);
+                }else{
+                    System.out.println("Project couldn't be created!");
+                }
+
             } else if (opt == 2) {
                 //String title, Enum status, Enum type
                 String title = null;
@@ -251,43 +263,37 @@ class Main {
                 admin.createIssue(issueList, title, status, type);
             } else if (opt == 3) {
                 String userType = null;
-                int id = -1;
                 String username = null;
                 String fullname = null;
-                int contact = -1;
-                String teams = null;
-                System.out.println("Enter id:");
-                id = input.nextInt();
+                String password = null;
                 System.out.println("Enter username:");
                 username = input.nextLine();
                 System.out.println("Enter fullname:");
                 fullname = input.nextLine();
-                System.out.println("Enter contact:");
-                contact = input.nextInt();
-                System.out.println("Enter teams:");
-                teams = input.nextLine();
                 System.out.println("Enter the user type (guest,projectmember,projectmanager,boardmember)");
                 userType = input.nextLine();
+                System.out.println("Enter the password of the user");
+                password = input.nextLine();
                 switch(userType){
                     case "projectmanager":
-                        Project project = projectSelection(admin.getSystem(), input);
-                        Board board = boardSelection(project, input);
-                        admin.createUser(userType, id, username, fullname, contact, teams, project, board);
+                        ProjectManager pm = new ProjectManager( username, fullname,password);
+                        managers.add(pm);
+                        admin.createUser(userType, username, fullname, password);
                         break;
                     case "projectmember":
-                        Project project1 = projectSelection(admin.getSystem(), input);
-                        Board board1 = boardSelection(project1, input);
-                        admin.createUser(userType, id, username, fullname, contact, teams, project1, board1);
+                        ProjectMember pMember = new ProjectMember( username, fullname,password);
+                        admin.createUser(userType, username, fullname, password);
+                        members.add(pMember);
                         break;
                     case "boardmember":
-                        Project project2 = projectSelection(admin.getSystem(), input);
-                        Board board2 = boardSelection(project2, input);
-                        admin.createUser(userType, id, username, fullname, contact, teams,board2);
+                        BoardMember bm = new BoardMember( username, fullname,password);
+                        boardMembers.add(bm);
+                        admin.createUser(userType, username, fullname,password);
                         break;
                     case "guest":
-                        Project project3 = projectSelection(admin.getSystem(), input);
-                        Board board3 = boardSelection(project3, input);
-                        admin.createUser(userType, id, username, fullname, contact, teams,board3);
+                        Guest guest = new Guest( username, fullname,password);
+                        guests.add(guest);
+                        admin.createUser(userType,  username, fullname, password);
                         break;
                 }
             } else if (opt == 4) {
@@ -465,6 +471,10 @@ class Main {
         }
         System.out.println("Enter the project number:");
         selectedProject = input.nextInt();
+        if(selectedProject < 0 || selectedProject >= system.getProjects().size()){
+            System.out.println("Invalid project");
+            return null;
+        }
         return system.getProjects().get(selectedProject);
     }
     public static Board boardSelection(Project project,Scanner input){
@@ -478,6 +488,10 @@ class Main {
         }
         System.out.println("Enter the board number:");
         selectedBoard = input.nextInt();
+        if(selectedBoard <0 || selectedBoard >= project.getBoards().size()){
+            System.out.println("Invalid board");
+            return null;
+        }
         return project.getBoards().get(selectedBoard);
     }
     public static IssueList issuListSelection(Board board,Scanner input){
@@ -491,6 +505,10 @@ class Main {
         }
         System.out.println("Enter the number of the issue list:");
         selectedIssueList = input.nextInt();
+        if(selectedIssueList < 0 || selectedIssueList >= board.getIssues().size()){
+            System.out.println("Invalid issue list");
+            return null;
+        }
         return board.getIssues().get(selectedIssueList);
     }
     public static User userSelection(SystemClass system,Scanner input){
@@ -504,6 +522,10 @@ class Main {
         }
         System.out.println("Enter the number of the user:");
         selectedUser = input.nextInt();
+        if(selectedUser < 0 || selectedUser >= system.getUsers().size()){
+            System.out.println("Invalid user");
+            return null;
+        }
         return system.getUsers().get(selectedUser);
     }
 }

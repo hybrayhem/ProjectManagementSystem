@@ -38,12 +38,12 @@ public class ProjectMemberTest {
         Project project2 = new Project();
         Project project = new Project(1, "key", "name", "type", null, null, 
                          null, backlog);
-        ProjectMember projectMember = new ProjectMember(1, "username", "fullname",
+        ProjectMember projectMember = new ProjectMember( "username", "fullname",
                                       1, "teams",project,new Board());
         projectMember.viewBacklog();
-        ProjectMember projectMember2 = new ProjectMember(1, "username", "fullname",
+        ProjectMember projectMember2 = new ProjectMember( "username", "fullname",
                                         1, "teams", project2, new Board());
-        ProjectMember projectMember3 = new ProjectMember(1, "username", "fullname", 
+        ProjectMember projectMember3 = new ProjectMember( "username", "fullname", 
                                        1, "teams", project3, new Board());
         try{
             projectMember2.viewBacklog();
