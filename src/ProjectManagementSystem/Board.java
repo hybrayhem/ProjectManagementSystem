@@ -11,6 +11,7 @@ import BST.BinarySearchTree;
 public class Board implements Serializable{
     private int id;
     private static int instanceCount = 0;
+    String name = "";
     private List<IssueList> listOfIssueList = new ArrayList<>();
     private AVLTree<User> members = new AVLTree<>();
 
@@ -18,8 +19,9 @@ public class Board implements Serializable{
         this.id = ++instanceCount;
     }
 
-    public Board(ArrayList<IssueList> issues, AVLTree<User> members) {
+    public Board(String name, ArrayList<IssueList> issues, AVLTree<User> members) {
         this();
+        this.name = name;
         this.listOfIssueList = issues;
         this.members = members;
     }
@@ -40,7 +42,15 @@ public class Board implements Serializable{
         this.id = id;
     }
 
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /** 
      * @return List<IssueList>
      */
@@ -168,18 +178,21 @@ public class Board implements Serializable{
         return Objects.hash(id, listOfIssueList, members);
     }
 
-    
+    public String membersToString() {
+        return getMembers().toString();
+    }
+
     /** 
      * @return String
      */
     @Override
     public String toString() {
-        // TODO: refactor according to menu design
-        return "{" +
-                " id='" + getId() + "'" +
-                ", issues='" + getIssues() + "'" +
-                ", members='" + getMembers() + "'" +
-                "}";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n" + "\\".repeat(38) + "   BoardID: " + getId() + "   " + "/".repeat(38));
+        for (IssueList issueList : listOfIssueList) {
+            sb.append(issueList.toString() + "\n");
+        }
+        return sb.toString();
     }
 
 }
