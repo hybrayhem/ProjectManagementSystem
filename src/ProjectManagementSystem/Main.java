@@ -11,13 +11,6 @@ class Main {
     static ArrayList<ProjectMember> members = new ArrayList<>();
     static ArrayList<Guest> guests = new ArrayList<>();
     static ArrayList<BoardMember> boardMembers = new ArrayList<>();
-    static int adminId=0;
-    static int projectManagerId=0;
-    static int projectMemberId=0;
-    static int guestsId=0;
-    static int boardMemberId=0;
-
-    static int projectId=0;
 
 
 
