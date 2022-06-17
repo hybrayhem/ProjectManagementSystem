@@ -18,6 +18,10 @@ public class Board implements Serializable{
     public Board() {
         this.id = ++instanceCount;
     }
+    public Board(String name){
+        this();
+        this.name = name;
+    }
 
     public Board(String name, ArrayList<IssueList> issues, AVLTree<User> members) {
         this();

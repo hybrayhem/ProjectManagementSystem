@@ -38,4 +38,15 @@ public class ProjectManager extends ProjectMember implements Serializable{
             issue.addAssignee(user);
         }
     }   
+    public void assignUser(Board board,User user){
+        if(board == null){
+            System.out.println("User cannot be assigned because the board doesn't exist.");
+        }
+        else if(user == null){
+            System.out.println("User couldn't be added because user doesn't exist");
+        }
+        else if((user instanceof BoardMember)){
+            board.addMember((BoardMember) user);
+        }
+    }
 }
