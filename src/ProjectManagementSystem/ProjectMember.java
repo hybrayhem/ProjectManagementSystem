@@ -20,7 +20,7 @@ public class ProjectMember extends BoardMember implements Serializable{
         addBoard(assignedBoard);        
     }
     public void viewBacklog(){
-        if(project.getBacklog() == null){
+        if(project == null || project.getBacklog() == null){
             System.out.println("There is no backlog to view.");
         }
         else{

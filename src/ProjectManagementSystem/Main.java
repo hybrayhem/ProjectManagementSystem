@@ -126,15 +126,6 @@ class Main {
                 }
                 break;
             case 3:
-                for(Guest guest : guests){
-                    if(guest.getUsername().equals(username) && guest.getPassword().equals(pw)) {
-                        guestMenu(guest);
-                        loggedIn = true;
-                        break;
-                    }
-                }
-                break;
-            case 4:
                 for(BoardMember boardMember : boardMembers){
                     if(boardMember.getUsername().equals(username) && boardMember.getPassword().equals(pw)) {
                         boardMemberMenu(boardMember);
@@ -144,10 +135,19 @@ class Main {
                 }
 
                 break;
-            case 5:
+            case 4:
                 for(ProjectMember member : members){
                     if(member.getUsername().equals(username) && member.getPassword().equals(pw)) {
                         memberMenu(member);
+                        loggedIn = true;
+                        break;
+                    }
+                }
+                break;
+            case 5:
+                for(Guest guest : guests){
+                    if(guest.getUsername().equals(username) && guest.getPassword().equals(pw)) {
+                        guestMenu(guest);
                         loggedIn = true;
                         break;
                     }
@@ -194,7 +194,7 @@ class Main {
                 String title = null;
                 System.out.println("Enter the title of the issue");
                 title = input.nextLine();
-                String statussString = null; 
+                String statussString = null;
                 Issue.Status status = null;
                 System.out.println("Enter the status of the issue ( 'development','done','inprogress','inreview','verified'");
                 statussString = input.nextLine();
@@ -215,7 +215,7 @@ class Main {
                         status = Issue.Status.verified;
                         break;
                     default:
-                        status = null;          
+                        status = null;
                 }
                 String typeString = null;
                 Issue.Type type = null;
@@ -472,42 +472,81 @@ class Main {
             System.out.println("1- View board");
             System.out.println("2- View backlog");
             System.out.println("3- View project");
-            System.out.println("4- Change issue title");
-            System.out.println("5- Edit issue title");
-            System.out.println("6- Change issue status");
-            System.out.println("7- Add issue comment");
-            System.out.println("8- Edit issue comment");
-            System.out.println("9- Remove issue comment");
-            System.out.println("10- Logout");
+            System.out.println("4- Logout");
 
             opt = input.nextInt();  input.nextLine();
 
             if (opt == 1) {
-                projectMember.viewBoard(null);
+                Board temp = new Board();
+                temp.boardListToString(projectMember.getBoards());
+                System.out.println("Select board: ");
+                do{
+                    opt = input.nextInt(); input.nextLine();
+                }while(projectMember.getBoardByID(opt) == null);
+                projectMember.viewBoard(projectMember.getBoardByID(opt));
+
+                do {
+                    System.out.println("1- Issue edit menu");
+                    System.out.println("2- Exit");
+                    opt = input.nextInt();  input.nextLine();
+
+                    if(opt == 1){
+                        System.out.println(projectMember.getBoardByID(opt).getIssues());
+                        System.out.println("Select issue:");
+                        do{
+                            opt = input.nextInt(); input.nextLine();
+                        }while(projectMember.getBoardByID(opt).getIssueByID(opt) == null);
+                        Issue issueSelection = projectMember.getBoardByID(opt).getIssueByID(opt);
+                        System.out.println("Selected: " + issueSelection);
+
+                        do{
+                            System.out.println("1- Change issue title");
+                            System.out.println("2- Change issue status");
+                            System.out.println("3- Add issue comment");
+                            System.out.println("4- Remove issue comment");
+                            System.out.println("5- Exit");
+                            opt = input.nextInt();  input.nextLine();
+
+                            if (opt == 1) {
+                                System.out.println("Enter new title: ");
+                                String newTitle = input.nextLine();
+                                projectMember.editIssueTitle(issueSelection, newTitle);
+                            } else if (opt == 2) {
+                                do{
+                                    System.out.println("Select new status: ");
+                                    System.out.println("1-development, 2-inProgress, 3-inReview, 4-verified, 5-done");
+                                    opt = input.nextInt();  input.nextLine();
+                                }while(opt < 1 || opt > 5);
+                                projectMember.changeIssueStatus(issueSelection, Issue.Status.values()[opt-1]);
+                            } else if (opt == 3) {
+                                System.out.println("Enter comment: ");
+                                String commentStr = input.nextLine();
+                                Comment comment = new Comment(projectMember, commentStr);
+                                projectMember.addIssueComment(issueSelection, comment);
+                            }
+                            else if (opt == 4) {
+                                do {
+                                    System.out.println("Select Comment Index to Remove: ");
+                                    System.out.println(issueSelection.getComments());
+                                    opt = input.nextInt();  input.nextLine();
+                                }while (opt < 1 || opt >= issueSelection.getComments().size());
+                                projectMember.removeIssueComment(issueSelection, issueSelection.getComments().get(opt));
+                            }
+
+                        } while(opt != 5);
+                    }
+                } while(opt != 2);
+
+
             } else if (opt == 2) {
                 projectMember.viewBacklog();
             } else if (opt == 3) {
                 projectMember.viewProject();
-            }else if (opt == 4) {
-                projectMember.editIssueTitle(null, null);
-            } else if (opt == 5) {
-                projectMember.editIssueTitle(null, null);
-            }else if (opt == 6) {
-                projectMember.changeIssueStatus(null, null);
-            } else if (opt == 7) {
-                projectMember.addIssueComment(null, null);
-            }
-            else if (opt == 8) {
-                projectMember.editIssueTitle(null, null);
-            }
-            else if (opt == 9) {
-                projectMember.removeIssueComment(null);
-            }
-            else if (opt == 10) {
+            } else if (opt == 4) {
                 System.out.println("Good Bye..");
                 return;
             }
-        }while(opt!=10);
+        }while(opt!=4);
     }
     public static Project projectSelection(SystemClass system,Scanner input){
         int selectedProject = -1;

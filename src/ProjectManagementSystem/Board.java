@@ -58,6 +58,17 @@ public class Board implements Serializable{
         return this.listOfIssueList;
     }
 
+    public Issue getIssueByID(int id) {
+        for(IssueList issueList : listOfIssueList){
+            for(Issue issue : issueList.getIssues()){
+                if(issue.getId() == id){
+                    return issue;
+                }
+            }
+        }
+        return null;
+    }
+
     
     /** 
      * @return AVLTree<User>
@@ -182,6 +193,14 @@ public class Board implements Serializable{
         return getMembers().toString();
     }
 
+    public String boardListToString(List<Board> boards) {
+        StringBuilder sb = new StringBuilder();
+        for (Board board : boards) {
+            sb.append(board.toString(true) + "\n");
+        }
+        return sb.toString();
+    }
+
     /** 
      * @return String
      */
@@ -191,6 +210,15 @@ public class Board implements Serializable{
         sb.append("\n" + "\\".repeat(38) + "   BoardID: " + getId() + "   " + "/".repeat(38));
         for (IssueList issueList : listOfIssueList) {
             sb.append(issueList.toString() + "\n");
+        }
+        return sb.toString();
+    }
+
+    public String toString(boolean isShort) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("BoardID: " + getId() + "; Issue Lists: ");
+        for (IssueList issueList : listOfIssueList) {
+            sb.append(issueList.getTitle() + ", ");
         }
         return sb.toString();
     }

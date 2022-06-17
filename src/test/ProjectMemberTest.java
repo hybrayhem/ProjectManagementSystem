@@ -1,17 +1,21 @@
 package test;
+
 import ProjectManagementSystem.ProjectMember;
+
 import java.util.Calendar;
 import java.util.Stack;
+
 import ProjectManagementSystem.Backlog;
 import ProjectManagementSystem.Project;
 import ProjectManagementSystem.Issue;
 import ProjectManagementSystem.Board;
+
 public class ProjectMemberTest {
-    ProjectMemberTest(){
+    public static void main(String[] args) {
         Calendar c = Calendar.getInstance();
-        c.set(Calendar.MONTH,11);
-        c.set(Calendar.DATE,05);
-        c.set(Calendar.YEAR,2025);
+        c.set(Calendar.MONTH, 11);
+        c.set(Calendar.DATE, 05);
+        c.set(Calendar.YEAR, 2025);
         Stack<Issue> issues = new Stack<>();
         Issue issue1 = new Issue("title0", Issue.Status.development, Issue.Type.bug);
         issue1.setDueDate(c.getTime());
@@ -36,28 +40,28 @@ public class ProjectMemberTest {
         Backlog backlog = new Backlog(issues);
         Project project3 = null;
         Project project2 = new Project();
-        Project project = new Project(1, "key", "name", "type", null, null, 
-                         null, backlog);
-        ProjectMember projectMember = new ProjectMember( "username", "fullname",
-                                      1, "teams",project,new Board());
+        Project project = new Project(1, "key", "name", "type", null, null,
+                null, backlog);
+        ProjectMember projectMember = new ProjectMember("username", "fullname",
+                1, "teams", project, new Board());
         projectMember.viewBacklog();
-        ProjectMember projectMember2 = new ProjectMember( "username", "fullname",
-                                        1, "teams", project2, new Board());
-        ProjectMember projectMember3 = new ProjectMember( "username", "fullname", 
-                                       1, "teams", project3, new Board());
-        try{
+        ProjectMember projectMember2 = new ProjectMember("username", "fullname",
+                1, "teams", project2, new Board());
+        ProjectMember projectMember3 = new ProjectMember("username", "fullname",
+                1, "teams", project3, new Board());
+        try {
             projectMember2.viewBacklog();
-        }catch(Exception e ){
+        } catch (Exception e) {
             System.err.println("An error occured when displaying backlog");
         }
-        try{
+        try {
             projectMember.viewProject();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println("An error occured when displaying project");
         }
-        try{
+        try {
             projectMember3.viewProject();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println("An error occured when displaying project");
         }
     }
