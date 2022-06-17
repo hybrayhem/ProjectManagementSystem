@@ -728,11 +728,15 @@ class Main {
                                 projectMember.addIssueComment(selectedIssue, comment);
                             }
                             else if (opt == 4) {
+                                if(selectedIssue.getComments().isEmpty()){
+                                    System.out.println("There is no comment to remove!\n");
+                                    continue;
+                                }
                                 do {
                                     System.out.println("Select Comment Index to Remove: ");
                                     System.out.println(selectedIssue.getComments());
                                     opt = input.nextInt();  input.nextLine();
-                                }while (opt < 1 || opt >= selectedIssue.getComments().size());
+                                }while (opt < 0 || opt >= selectedIssue.getComments().size());
                                 projectMember.removeIssueComment(selectedIssue, selectedIssue.getComments().get(opt));
                             }
 
