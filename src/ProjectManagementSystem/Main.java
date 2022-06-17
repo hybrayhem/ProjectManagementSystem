@@ -158,9 +158,10 @@ class Main {
             case 1:
                 for(Admin admin : admins){
                     if(admin.getUsername().equals(username) && admin.getPassword().equals(pw)) {
+                        System.out.println("Login successful");
                         adminMenu(admin);
                         loggedIn = true;
-                        System.out.println("Login successful");
+
                         break;
                     }
                 }
@@ -168,8 +169,9 @@ class Main {
              case 2:
                 for(ProjectManager manager : managers){
                     if(manager.getUsername().equals(username) && manager.getPassword().equals(pw)) {
-                        projectManagerMenu(manager);
                         System.out.println("Login successful");
+                        projectManagerMenu(manager);
+
                         loggedIn = true;
                         break;
                     }
@@ -178,8 +180,9 @@ class Main {
             case 3:
                 for(BoardMember boardMember : boardMembers){
                     if(boardMember.getUsername().equals(username) && boardMember.getPassword().equals(pw)) {
-                        boardMemberMenu(boardMember);
                         System.out.println("Login successful");
+                        boardMemberMenu(boardMember);
+
                         loggedIn = true;
                         break;
                     }
@@ -189,8 +192,9 @@ class Main {
             case 4:
                 for(ProjectMember member : members){
                     if(member.getUsername().equals(username) && member.getPassword().equals(pw)) {
-                        memberMenu(member);
                         System.out.println("Login successful");
+                        memberMenu(member);
+
                         loggedIn = true;
                         break;
                     }
@@ -199,9 +203,10 @@ class Main {
             case 5:
                 for(Guest guest : guests){
                     if(guest.getUsername().equals(username) && guest.getPassword().equals(pw)) {
+                        System.out.println("Login successful");
                         guestMenu(guest);
                         loggedIn = true;
-                        System.out.println("Login successful");
+
                         break;
                     }
                 }
@@ -529,6 +534,7 @@ class Main {
             System.out.println("2- View backlog");
             System.out.println("3- View project");
             System.out.println("4- Logout");
+
 
             opt = input.nextInt();  input.nextLine();
 
