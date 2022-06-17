@@ -469,7 +469,7 @@ class Main {
                         System.out.println("No project found, user couldn't be assigned");
                         continue;
                     }
-                    
+
                     Board board = boardSelection(projectManager.getAssignedProject(), input);
                     if(board == null){
                         System.out.println("No board found, user couldn't be assigned");
@@ -676,11 +676,12 @@ class Main {
                 System.out.println("Select board: ");
                 opt = input.nextInt();
                 input.nextLine();
-                if (projectMember.getBoardByID(opt) == null) {
+                Board selectedBoard = projectMember.getBoardByID(opt);
+                if (selectedBoard == null) {
                     System.out.println("Invalid board!\n");
                     continue;
                 } else {
-                    projectMember.viewBoard(projectMember.getBoardByID(opt));
+                    projectMember.viewBoard(selectedBoard);
                 }
 
                 do {
@@ -689,13 +690,17 @@ class Main {
                     opt = input.nextInt();  input.nextLine();
 
                     if(opt == 1){
-                        System.out.println(projectMember.getBoardByID(opt).getIssues());
+                        System.out.println(selectedBoard.getIssues());
                         System.out.println("Select issue:");
-                        do{
-                            opt = input.nextInt(); input.nextLine();
-                        }while(projectMember.getBoardByID(opt).getIssueByID(opt) == null);
-                        Issue issueSelection = projectMember.getBoardByID(opt).getIssueByID(opt);
-                        System.out.println("Selected: " + issueSelection);
+                        opt = input.nextInt(); input.nextLine();
+                        Issue selectedIssue = selectedBoard.getIssueByID(opt);
+
+                        if(selectedIssue == null) {
+                            System.out.println("Invalid issue!\n");
+                            continue;
+                        } else {
+                            System.out.println("Selected: " + selectedIssue);
+                        }
 
                         do{
                             System.out.println("1- Change issue title");
@@ -708,27 +713,27 @@ class Main {
                             if (opt == 1) {
                                 System.out.println("Enter new title: ");
                                 String newTitle = input.nextLine();
-                                projectMember.editIssueTitle(issueSelection, newTitle);
+                                projectMember.editIssueTitle(selectedIssue, newTitle);
                             } else if (opt == 2) {
                                 do{
                                     System.out.println("Select new status: ");
                                     System.out.println("1-development, 2-inProgress, 3-inReview, 4-verified, 5-done");
                                     opt = input.nextInt();  input.nextLine();
                                 }while(opt < 1 || opt > 5);
-                                projectMember.changeIssueStatus(issueSelection, Issue.Status.values()[opt-1]);
+                                projectMember.changeIssueStatus(selectedIssue, Issue.Status.values()[opt-1]);
                             } else if (opt == 3) {
                                 System.out.println("Enter comment: ");
                                 String commentStr = input.nextLine();
                                 Comment comment = new Comment(projectMember, commentStr);
-                                projectMember.addIssueComment(issueSelection, comment);
+                                projectMember.addIssueComment(selectedIssue, comment);
                             }
                             else if (opt == 4) {
                                 do {
                                     System.out.println("Select Comment Index to Remove: ");
-                                    System.out.println(issueSelection.getComments());
+                                    System.out.println(selectedIssue.getComments());
                                     opt = input.nextInt();  input.nextLine();
-                                }while (opt < 1 || opt >= issueSelection.getComments().size());
-                                projectMember.removeIssueComment(issueSelection, issueSelection.getComments().get(opt));
+                                }while (opt < 1 || opt >= selectedIssue.getComments().size());
+                                projectMember.removeIssueComment(selectedIssue, selectedIssue.getComments().get(opt));
                             }
 
                         } while(opt != 5);
