@@ -28,7 +28,7 @@ public class ProjectMember extends BoardMember implements Serializable{
         }
     }
     public void setProject(Project project){
-        project = this.project;
+        this.project = project;
     }
     public Project getAssignedProject(){return project;}
 
