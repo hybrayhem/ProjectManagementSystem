@@ -36,7 +36,7 @@ public class Issue implements Comparable<Issue>,Serializable {
     private Priority priority;
     private Status status;
     private Type type;
-    private Issue childIssue;//TODO: bunu ya ayri class yapmak lazim ya da graphta implement etmek idk
+    private Issue childIssue;
 
     public SkipList<User> assignee = new SkipList<User>();
     public ArrayList<String> logHistory = new ArrayList<>();
