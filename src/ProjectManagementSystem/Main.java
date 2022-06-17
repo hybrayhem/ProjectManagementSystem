@@ -473,7 +473,7 @@ class Main {
                 }else{
                     System.out.println("User couldn't be assigned!");
                 }
-              } 
+              }
               else if (opt == 3) {
                   BoardMember user = null;
                   for(int i =0 ; i < boardMembers.size();i++){
@@ -496,7 +496,7 @@ class Main {
                     continue;
                   }
                   projectManager.assignUser(board, user);
-              } 
+              }
               else if (opt == 4) {
                 System.out.println("Enter the name of the board:");
                 String name = input.nextLine();
@@ -631,10 +631,14 @@ class Main {
                 Board temp = new Board();
                 temp.boardListToString(projectMember.getBoards());
                 System.out.println("Select board: ");
-                do{
-                    opt = input.nextInt(); input.nextLine();
-                }while(projectMember.getBoardByID(opt) == null);
-                projectMember.viewBoard(projectMember.getBoardByID(opt));
+                opt = input.nextInt();
+                input.nextLine();
+                if (projectMember.getBoardByID(opt) == null) {
+                    System.out.println("Invalid board!\n");
+                    continue;
+                } else {
+                    projectMember.viewBoard(projectMember.getBoardByID(opt));
+                }
 
                 do {
                     System.out.println("1- Issue edit menu");
