@@ -76,7 +76,9 @@ class Main {
                             break;
                         }
                     }
-                    admins.add(new Admin(username, name, pw ,system));
+                    Admin admin = new Admin(username, name, pw ,system);
+                    admins.add(admin);
+                    system.addUser(admin);
                     opt=6;
                     break;
                 case 2:
@@ -86,7 +88,9 @@ class Main {
                             break;
                         }
                     }
-                    managers.add(new ProjectManager(username, name, pw ));
+                    ProjectManager projectManager = new ProjectManager(username, name, pw );
+                    managers.add(projectManager);
+                    system.addUser(projectManager);
                     opt=6;
                     break;
                 case 3:
@@ -96,7 +100,9 @@ class Main {
                             break;
                         }
                     }
-                    boardMembers.add(new BoardMember(username, name, pw ));
+                    BoardMember boardMember = new BoardMember(username, name, pw );
+                    boardMembers.add(boardMember);
+                    system.addUser(boardMember);
                     opt=6;
                     break;
                 case 4:
@@ -106,7 +112,9 @@ class Main {
                             break;
                         }
                     }
-                    members.add(new ProjectMember(username, name, pw ));
+                    ProjectMember projectMember = new ProjectMember(username, name, pw );
+                    members.add(projectMember);
+                    system.addUser(projectMember);
                     opt=6;
                     break;
                 case 5:
@@ -116,7 +124,9 @@ class Main {
                             break;
                         }
                     }
-                    guests.add(new Guest( username, name, pw ));
+                    Guest guest = new Guest( username, name, pw );
+                    guests.add(guest);
+                    system.addUser(guest);
                     opt=6;
                     break;
                 case 6:
@@ -465,13 +475,19 @@ class Main {
                 }
               } 
               else if (opt == 3) {
-                  User user = userSelection(system, input);
-                  if(user == null){
-                    System.out.println("Invalid user");
+                  BoardMember user = null;
+                  for(int i =0 ; i < boardMembers.size();i++){
+                    System.out.println(i+".board member:"+boardMembers.get(i).toString());
+                  }
+                  System.out.println("Enter the number of the board member:");
+                  int selectedBoardMember = input.nextInt();input.nextLine();
+                  if(selectedBoardMember <0 || selectedBoardMember >= boardMembers.size()){
+                    System.out.println("Invalid board member");
                     continue;
                   }
-                  if(!(user instanceof BoardMember)){
-                    System.out.println("only board members can be assigned to the boards");
+                  user = boardMembers.get(selectedBoardMember);
+                  if(user == null){
+                    System.out.println("Invalid user");
                     continue;
                   }
                   Board board = boardSelection(projectManager.getAssignedProject(), input);
