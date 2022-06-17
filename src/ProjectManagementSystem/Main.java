@@ -672,7 +672,7 @@ class Main {
 
             if (opt == 1) {
                 Board temp = new Board();
-                temp.boardListToString(projectMember.getBoards());
+                System.out.println(temp.boardListToString(projectMember.getBoards()));
                 System.out.println("Select board: ");
                 opt = input.nextInt();
                 input.nextLine();
