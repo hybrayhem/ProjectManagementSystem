@@ -49,42 +49,78 @@ class Main {
 
         do {
             System.out.println("Choose Account Type:\n1)Admin\n"+ "2)Project Manager\n3)Board Member\n4)Project Member\n5)Guest\n6)Exit");
-            opt = input.nextInt(); input.nextLine();
+            String temp = input.nextLine();
+
+            if (temp.length() != 1)
+                opt = 7;
+            else
+                opt = Integer.parseInt(temp);
 
             String name=null, username = null, pw=null;
 
-            if (opt != 6) {
+            if (opt == 1 ||opt == 2|| opt ==3 || opt==4 || opt==5) {
+
                 System.out.println("Enter full name:");
                 name = input.nextLine();
                 System.out.println("Enter username:");
                 username = input.nextLine();
                 System.out.println("Enter password:");
                 pw = input.nextLine();
+
             }
             switch (opt){
                 case 1:
+                    for (Admin admin: admins) {
+                        if(admin.getUsername().equals(username)){
+                            System.out.println("User already registered!");
+                            break;
+                        }
+                    }
                     admins.add(new Admin(username, name, pw ,system));
                     opt=6;
                     break;
                 case 2:
+                    for (ProjectManager manager: managers) {
+                        if(manager.getUsername().equals(username)){
+                            System.out.println("User already registered!");
+                            break;
+                        }
+                    }
                     managers.add(new ProjectManager(username, name, pw ));
                     opt=6;
                     break;
                 case 3:
+                    for (BoardMember boardMember: boardMembers) {
+                        if(boardMember.getUsername().equals(username)){
+                            System.out.println("User already registered!");
+                            break;
+                        }
+                    }
                     boardMembers.add(new BoardMember(username, name, pw ));
                     opt=6;
                     break;
                 case 4:
+                    for (ProjectMember projectMember: members) {
+                        if(projectMember.getUsername().equals(username)){
+                            System.out.println("User already registered!");
+                            break;
+                        }
+                    }
                     members.add(new ProjectMember(username, name, pw ));
                     opt=6;
                     break;
                 case 5:
+                    for (Guest guest: guests) {
+                        if(guest.getUsername().equals(username)){
+                            System.out.println("User already registered!");
+                            break;
+                        }
+                    }
                     guests.add(new Guest( username, name, pw ));
                     opt=6;
                     break;
                 case 6:
                     System.out.println("Redirecting to main menu.");
-                    opt=6;
                     break;
                 default:
                     System.out.println("Invalid selection..");
@@ -98,13 +134,25 @@ class Main {
 
         Scanner input = new Scanner(System.in);
         int opt;
+        String name=null, username = null, pw=null;
         boolean loggedIn = false;
         System.out.println("Choose Account Type:\n1)Admin\n"+ "2)Project Manager\n3)Board Member\n4)Project Member\n5)Guest\n6)Exit");
-        opt = input.nextInt(); input.nextLine();
-        System.out.println("Your username: ");
-        String username = input.nextLine();
-        System.out.println("Your password: ");
-        String pw = input.nextLine();
+
+
+        String temp = input.nextLine();
+        if (temp.length() != 1)
+            opt = 7;
+        else
+            opt = Integer.parseInt(temp);
+
+        if (opt == 1 ||opt == 2|| opt ==3 || opt==4 || opt==5) {
+
+            System.out.println("Your username: ");
+            username = input.nextLine();
+            System.out.println("Your password: ");
+            pw = input.nextLine();
+        }
+
 
         switch (opt){
             case 1:
@@ -112,6 +160,7 @@ class Main {
                     if(admin.getUsername().equals(username) && admin.getPassword().equals(pw)) {
                         adminMenu(admin);
                         loggedIn = true;
+                        System.out.println("Login successful");
                         break;
                     }
                 }
@@ -120,6 +169,7 @@ class Main {
                 for(ProjectManager manager : managers){
                     if(manager.getUsername().equals(username) && manager.getPassword().equals(pw)) {
                         projectManagerMenu(manager);
+                        System.out.println("Login successful");
                         loggedIn = true;
                         break;
                     }
@@ -129,6 +179,7 @@ class Main {
                 for(BoardMember boardMember : boardMembers){
                     if(boardMember.getUsername().equals(username) && boardMember.getPassword().equals(pw)) {
                         boardMemberMenu(boardMember);
+                        System.out.println("Login successful");
                         loggedIn = true;
                         break;
                     }
@@ -139,6 +190,7 @@ class Main {
                 for(ProjectMember member : members){
                     if(member.getUsername().equals(username) && member.getPassword().equals(pw)) {
                         memberMenu(member);
+                        System.out.println("Login successful");
                         loggedIn = true;
                         break;
                     }
@@ -149,15 +201,19 @@ class Main {
                     if(guest.getUsername().equals(username) && guest.getPassword().equals(pw)) {
                         guestMenu(guest);
                         loggedIn = true;
+                        System.out.println("Login successful");
                         break;
                     }
                 }
                 break;
-            default:
+            case 6:
                 System.out.println("Redirecting to main menu.");
+                break;
+            default:
+                System.out.println("Invalid input(s)");
 
         }
-        if(!loggedIn)
+        if(!loggedIn && opt != 7)
             System.out.println("Wrong ID or Password.");
     }
 
