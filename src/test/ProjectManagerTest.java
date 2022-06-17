@@ -19,10 +19,10 @@ public class ProjectManagerTest {
             System.err.println("User couldn't be assigned!");
         }
         System.out.println("Invalid issue, error will occur");
-        projectManager.assignUser(null, user);
+        projectManager.assignUser(new Issue(), user);
         System.out.println("Invalid user, error will occur");
         projectManager.assignUser(issue, null);
         System.out.println("Invalid issue and user, error will occur");
-        projectManager.assignUser(null, null);
+        projectManager.assignUser(new Issue(), null);
     }  
 }

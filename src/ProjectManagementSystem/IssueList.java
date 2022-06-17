@@ -10,7 +10,11 @@ public class IssueList implements Serializable {
     private ArrayList<Issue> issues;
     private PriorityQueue<Issue> issueQueue;
 
-
+    public IssueList() {
+        this.title = "undefined";
+        issues = new ArrayList<>();
+        issueQueue = new PriorityQueue<>();
+    }
     public IssueList(String title) {
         this.title = title;
         issues = new ArrayList<>();
