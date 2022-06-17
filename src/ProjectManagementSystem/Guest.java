@@ -18,6 +18,9 @@ public class Guest extends User{
     public Guest( String username, String name, String pw) {
         super( username, name, pw);
     }
+    public void setBoard(Board board){
+        this.invitedBoard = board;
+    }
     public Issue.Status changeIssueStatus(Issue i, Issue.Status s){
         System.out.println("You don't have permission to change issue status!");
         return null;

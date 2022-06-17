@@ -318,6 +318,12 @@ class Main {
                     System.out.println("No board found, issue couldn't be created");
                     continue;
                 }
+                if(board.getIssues().size() == 0){
+                    IssueList issueList = new IssueList();
+                    board.addIssueList(issueList);
+                    admin.createIssue(issueList, title, status, type);
+                    continue;
+                }
                 IssueList issueList = issueListSelection(board, input);
                 if(issueList == null){
                     System.out.println("No issue list found, issue couldn't be created");
@@ -377,7 +383,8 @@ class Main {
             System.out.println("2- Assign user to an Issue");
             System.out.println("3- Assign board member to a board");
             System.out.println("4- Create board");
-            System.out.println("5- Logout");
+            System.out.println("5- Assign project member to a project");
+            System.out.println("6- Logout");
 
               opt = input.nextInt();  input.nextLine();
 
@@ -439,12 +446,15 @@ class Main {
                       System.out.println("No board found, issue couldn't be created");
                       continue;
                   }
-                  IssueList issueList = issueListSelection(board, input);
-                  if(issueList == null){
-                      System.out.println("No issue list found, issue couldn't be created");
-                      continue;
+                  if(board.getIssues().size() == 0){
+                    IssueList il = new IssueList();
+                    board.addIssueList(il);
+                    projectManager.createIssue(il, title, status, type);
                   }
-                  projectManager.createIssue(issueList, title, status, type);
+                  else{
+                    IssueList issueList = issueListSelection(board, input);
+                    projectManager.createIssue(issueList, title, status, type);
+                  }
               }else if ( opt == 2){
                 int selecteduser = -1;
                 System.out.println("Select a user to assign to the issue");
@@ -459,13 +469,14 @@ class Main {
                         System.out.println("No project found, user couldn't be assigned");
                         continue;
                     }
+                    
                     Board board = boardSelection(projectManager.getAssignedProject(), input);
                     if(board == null){
                         System.out.println("No board found, user couldn't be assigned");
                         continue;
                     }
                     IssueList issueList = issueListSelection(board, input);
-                    if(issueList == null){
+                    if(issueList == null || issueList.getIssues().size() == 0){
                         System.out.println("No issuelist found, user couldn't be assigned");
                         continue;
                     }
@@ -480,17 +491,17 @@ class Main {
                 }
               }
               else if (opt == 3) {
-                  BoardMember user = null;
-                  for(int i =0 ; i < boardMembers.size();i++){
-                    System.out.println(i+".board member:"+boardMembers.get(i).toString());
+                  User user = null;
+                  for(int i =0 ; i < system.getUsers().size();i++){
+                    System.out.println(i+".member:"+system.getUsers().get(i).toString());
                   }
-                  System.out.println("Enter the number of the board member:");
+                  System.out.println("Enter the number of the member:");
                   int selectedBoardMember = input.nextInt();input.nextLine();
-                  if(selectedBoardMember <0 || selectedBoardMember >= boardMembers.size()){
-                    System.out.println("Invalid board member");
+                  if(selectedBoardMember <0 || selectedBoardMember >= system.getUsers().size()){
+                    System.out.println("Invalid member");
                     continue;
                   }
-                  user = boardMembers.get(selectedBoardMember);
+                  user = system.getUsers().get(selectedBoardMember);
                   if(user == null){
                     System.out.println("Invalid user");
                     continue;
@@ -500,7 +511,15 @@ class Main {
                     System.out.println("Invalid board!");
                     continue;
                   }
-                  projectManager.assignUser(board, user);
+                  if(user instanceof Guest){
+                    Guest guest = (Guest) user;
+                    guest.setBoard(board);
+                    projectManager.assignUser(board, guest);
+                  }else{
+                    BoardMember bm  = (BoardMember) user;
+                    projectManager.assignUser(board, bm);
+                    bm.addBoard(board);
+                  }
               }
               else if (opt == 4) {
                 System.out.println("Enter the name of the board:");
@@ -509,10 +528,29 @@ class Main {
                 projectManager.addBoard(board);
               }
               else if (opt == 5) {
+                ProjectMember user = null;
+                  for(int i =0 ; i < members.size();i++){
+                    System.out.println(i+".project member:"+members.get(i).toString());
+                  }
+                  System.out.println("Enter the number of the project member:");
+                  int selectedprojectmember = input.nextInt();input.nextLine();
+                  if(selectedprojectmember <0 || selectedprojectmember >= members.size()){
+                    System.out.println("Invalid project member");
+                    continue;
+                  }
+                  user = members.get(selectedprojectmember);
+                  if(user == null){
+                    System.out.println("Invalid user");
+                    continue;
+                  }
+                  projectManager.assignUser(projectManager.getAssignedProject(), user);
+                  user.setProject(projectManager.getAssignedProject());
+              }
+              else if (opt == 6) {
                 System.out.println("Good Bye..");
                 return;
               }
-          }while(opt != 5);
+          }while(opt != 6);
     }
 
     public static void boardMemberMenu(BoardMember boardMember){

@@ -107,7 +107,9 @@ public class Project implements Serializable{
         // To : do
     }
 
-
+    public void addUser(User user){
+        users.add(user);
+    }
     public Board getBoard(int id){
         return this.board.get(id);
     }

@@ -27,6 +27,13 @@ public class ProjectMember extends BoardMember implements Serializable{
             System.out.println(project.getBacklog().toString());
         }
     }
+    public void addBoard(Board board){
+        if(project == null){
+            System.out.println("No project found, board couldn't be added");
+        }else{
+            project.setBoard(board);
+        }
+    }
     public void setProject(Project project){
         this.project = project;
     }
