@@ -144,6 +144,7 @@ public class Issue implements Comparable<Issue>,Serializable {
     public boolean setTitle(String title) {
         if(title.equals(""))
             return false;
+        this.updateUpdateTime();
         this.title = title;
         return true;
     }
@@ -151,6 +152,7 @@ public class Issue implements Comparable<Issue>,Serializable {
     public boolean setDescription(String description) {
         if(description.equals(""))
             return false;
+        this.updateUpdateTime();
         this.description = description;
         return true;
     }
@@ -164,15 +166,18 @@ public class Issue implements Comparable<Issue>,Serializable {
         Calendar c = Calendar.getInstance();
         if(dueDate.compareTo(c.getTime()) < 1)
             return false;
+        this.updateUpdateTime();
         this.dueDate = dueDate;
         return true;
     }
 
     public void setPriority(Priority priority) {
+        this.updateUpdateTime();
         this.priority = priority;
     }
 
     public void setStatus(Status status) {
+        this.updateUpdateTime();
         this.status = status;
     }
 
@@ -201,6 +206,7 @@ public class Issue implements Comparable<Issue>,Serializable {
     public boolean addAssignee(User user){
         if(user == null)
             return false;
+        this.updateUpdateTime();
         assignee.insert(user);
         return true;
     }
@@ -208,6 +214,7 @@ public class Issue implements Comparable<Issue>,Serializable {
     public boolean removeAssignee(User user){
         if(user == null)
             return false;
+        this.updateUpdateTime();
         assignee.delete(user);
         return true;
     }

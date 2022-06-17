@@ -50,7 +50,7 @@ public class Graph {
 */
     public void printEdges() {
         for (int i = 0; i < numOfNodes; i++) {
-            System.out.print("Node " + i + " is connected to: ");
+            System.out.print("Issue " + i + " is connected to: ");
             for (int j = 0; j < numOfNodes; j++) {
                 if (isSetMatrix[i][j]) {
                     System.out.print(j + " ");
