@@ -1,2 +1,2 @@
-# ProjectManagementSystem
-## CSE222 DataSructures semester project
+# Project Management System
+Java command line application to plan, track, and manage projects.
